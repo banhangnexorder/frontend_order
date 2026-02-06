@@ -37,7 +37,7 @@ export default function CartPage() {
     if (toppingsMap[menuId]) return;
 
     const res = await fetch(
-      `http://backend-order-dev.up.railway.app0/api/menu/${menuId}/toppings`
+      `http://backend-order-dev.up.railway.app/api/menu/${menuId}/toppings`
     );
     const data = await res.json();
 
@@ -61,7 +61,7 @@ export default function CartPage() {
 
   /* ===== SUBMIT ===== */
   const submitOrder = async () => {
-    const res = await fetch("http://backend-order-dev.up.railway.app0/api/orders", {
+    const res = await fetch("http://backend-order-dev.up.railway.app/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

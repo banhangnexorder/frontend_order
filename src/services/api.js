@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://backend-order-dev.up.railway.app0/api",
+  baseURL: "http://backend-order-dev.up.railway.app/api",
 });
 
 // 🔐 GẮN TOKEN TỰ ĐỘNG
