@@ -1,0 +1,34 @@
+/* === theme.css (Dùng chung toàn hệ thống) === */
+:root {
+  /* 🎨 Màu thương hiệu - Tone nâu cà phê */
+  --coffee-dark: #4b2e16;
+  --coffee-medium: #a7753f;
+  --coffee-light: #c28e4b;
+
+  /* 🎨 Màu nền & chữ */
+  --coffee-bg: #f9f7f3;
+  --coffee-text: #7a6a5d;
+  --white: #ffffff;
+
+  /* 🌫️ Bóng đổ */
+  --shadow: rgba(0, 0, 0, 0.05);
+
+  /* ✍️ Font */
+  --font-main: "Inter", sans-serif;
+
+  /* =====================
+     BUTTON SYSTEM (NEW)
+  ===================== */
+  --btn-bg: #ffffff;
+  --btn-border: #e5e0d8;
+  --btn-text: var(--coffee-text);
+
+  --btn-hover-bg: #f3efe9;
+
+  --btn-active-bg: var(--coffee-dark);
+  --btn-active-text: #ffffff;
+
+  /* ===== Status colors ===== */
+  --status-pending: #d97706;
+  --status-done: #2e7d32;
+}

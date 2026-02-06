@@ -1,0 +1,50 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--coffee-dark);
+  color: white;
+  padding: 14px 18px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin: 0;
+}
+
+.header-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-btn {
+  left: 16px;
+}
+
+.right-btn {
+  right: 16px;
+}
+
+.header-btn:hover {
+  color: var(--coffee-light);
+  transform: translateY(-50%) scale(1.1);
+}

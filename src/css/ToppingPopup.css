@@ -1,0 +1,80 @@
+.topping-popup {
+  width: 92%;
+  max-width: 420px;
+}
+
+.popup-title {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.topping-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.topping-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.topping-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.topping-price {
+  font-size: 13px;
+  color: #888;
+}
+
+.topping-qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.topping-qty button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+
+.topping-name {
+  font-weight: 600;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #222;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.qty-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.qty-number {
+  min-width: 20px;
+  text-align: center;
+}
+
+.btn-confirm {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  border: none;
+}

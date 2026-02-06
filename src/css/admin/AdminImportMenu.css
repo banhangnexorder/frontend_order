@@ -1,0 +1,19 @@
+.upload-menu {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+}
+
+.upload-menu h2 {
+  margin-bottom: 16px;
+}
+
+.upload-menu input {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.msg {
+  margin-top: 12px;
+  font-weight: 500;
+}

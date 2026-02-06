@@ -1,0 +1,159 @@
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  background: #f8f9fa;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 24px 16px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 24px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-weight: 500;
+  color: #6b7280;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  color: #2563eb;
+  border-bottom: 3px solid #2563eb;
+  font-weight: 600;
+}
+
+.tab:hover {
+  color: #3b82f6;
+}
+
+/* Card chung */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+}
+
+.upload-zone {
+  margin-bottom: 24px;
+}
+
+.file-label {
+  display: block;
+  padding: 20px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.file-label:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.file-label input {
+  display: none;
+}
+
+.file-name {
+  margin-top: 12px;
+  color: #2563eb;
+  text-align: center;
+  font-weight: 500;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  font-size: 1rem;
+}
+
+.btn.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.alert {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.alert-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.alert-success {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.hint {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.hint code {
+  background: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+}

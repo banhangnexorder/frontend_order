@@ -1,0 +1,24 @@
+.category {
+  margin-bottom: 24px;
+}
+
+.category h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #4b2e16;
+  border-left: 4px solid #c28e4b;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.category-title {
+  margin: 16px 0 10px;
+  color: #4b2e16;
+  font-weight: 700;
+  font-size: 18px;
+  border-left: 4px solid #c28e4b;
+  padding-left: 10px;
+}
+

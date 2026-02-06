@@ -1,0 +1,42 @@
+.upload-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.upload-container h2 {
+  margin-bottom: 20px;
+}
+
+.upload-box {
+  border: 2px dashed #ccc;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  background: #fafafa;
+}
+
+.upload-box input {
+  margin-bottom: 15px;
+}
+
+.upload-box button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.msg {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.note {
+  margin-top: 20px;
+  background: #f1f5f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.note ul {
+  padding-left: 18px;
+}

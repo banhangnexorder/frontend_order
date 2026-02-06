@@ -1,0 +1,357 @@
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+
+/* === CART PAGE === */
+.cart-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  background: var(--coffee-bg);
+  overflow-x: hidden;
+}
+
+/* === CONTENT === */
+.cart-content {
+  flex: 1;
+  padding: 16px;
+  width: 100%;
+}
+
+/* === CART ITEM === */
+.cart-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  padding: 10px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.cart-img {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.cart-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--coffee-dark);
+}
+
+.cart-price {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--coffee-medium);
+  margin: 4px 0;
+}
+
+/* === DELETE ITEM BUTTON === */
+.btn-remove-item {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--coffee-medium);
+}
+
+.btn-remove-item:hover {
+  color: var(--coffee-dark);
+}
+
+/* === TOPPING BUTTON === */
+.btn-topping {
+  margin-top: 6px;
+  padding: 6px 12px;
+  border-radius: 14px;
+  border: 1px dashed var(--coffee-light);
+  background: var(--white);
+  color: var(--coffee-dark);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-topping:hover {
+  background: var(--coffee-light);
+  color: #fff;
+}
+
+/* === SELECTED TOPPINGS === */
+.cart-topping {
+  font-size: 13px;
+  color: var(--coffee-text);
+  margin-top: 4px;
+}
+
+/* === NOTE === */
+.note {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e2dcd3;
+  border-radius: 8px;
+  font-size: 14px;
+  resize: none;
+}
+
+.note:focus {
+  outline: none;
+  border-color: var(--coffee-light);
+}
+
+/* === QTY ACTIONS === */
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* === EMPTY === */
+.empty {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--coffee-text);
+}
+
+/* === FOOTER === */
+.cart-footer {
+  /* Giữ nguyên các style cũ của bạn */
+  background: var(--white);
+  padding: 16px;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -2px 6px var(--shadow);
+  
+  /* Thêm để fixed bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;               /* Đảm bảo nằm trên nội dung khác nếu cần */
+  
+  /* Căn chỉnh nội dung bên trong */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Quan trọng: Thêm padding bottom cho phần nội dung chính để tránh bị footer che */
+.cart-content {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: 100px;       /* ← Giá trị này phải lớn hơn hoặc bằng chiều cao footer */
+  width: 100%;
+}
+
+/* Nếu bạn muốn footer có safe area cho iPhone (đáy có notch) */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .cart-footer {
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+  
+  .cart-content {
+    padding-bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+}
+
+.cart-footer .total {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--coffee-light);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.cart-footer button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  background: var(--coffee-dark);
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cart-footer button:hover {
+  background: var(--coffee-light);
+}
+
+/* === POPUP OVERLAY === */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* === POPUP === */
+.popup {
+  background: var(--white);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 420px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* === TOPPING POPUP === */
+.topping-popup .popup-title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--coffee-dark);
+  margin-bottom: 12px;
+}
+
+.topping-list {
+  margin-top: 10px;
+}
+
+.topping-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #ddd;
+}
+
+.topping-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.topping-name {
+  font-weight: 500;
+  color: var(--coffee-dark);
+}
+
+.topping-price {
+  font-size: 12px;
+  color: #777;
+}
+
+/* === TOPPING QTY === */
+.topping-qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topping-qty button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--coffee-medium);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.topping-qty span {
+  min-width: 20px;
+  text-align: center;
+}
+
+/* === POPUP ACTIONS === */
+.popup-actions {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.btn-confirm {
+  padding: 10px 20px;
+  border-radius: 16px;
+  background: var(--coffee-light);
+  color: white;
+  border: none;
+  font-weight: 600;
+}
+
+.cart-actions button.disabled {
+  background: #ccc !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-qty {
+  /* position: absolute; */
+  top: 8px;
+  right: 8px;
+  background: #4b2e16;
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 20px; /* 👈 size dấu cộng */
+  font-weight: 600;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+/* Textarea đẹp, bo tròn, padding hợp lý */
+.custom-textarea {
+  margin-top: 4px;
+  width: 100%;
+  min-height: 20px;
+  padding: 8px 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  border: 1px solid #d1d5db;        /* gray-300 */
+  border-radius: 8px;
+  background-color: #ffffff;
+  resize: vertical;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+/* Khi focus */
+.custom-textarea:focus {
+  border-color: #3b82f6;            /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* blue-500 với opacity */
+  outline: none;
+}
+
+/* Placeholder */
+.custom-textarea::placeholder {
+  color: #9ca3af;                   /* gray-400 */
+  opacity: 1;
+}
+
+/* Khi disabled (nếu cần) */
+.custom-textarea:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

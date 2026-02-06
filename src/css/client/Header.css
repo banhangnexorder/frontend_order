@@ -1,0 +1,29 @@
+.header-client {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #4b2e16;
+  color: white;
+  padding: 14px 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cart {
+  background: #c28e4b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+}
+
+.cart:hover {
+  background: #a7753f;
+}

@@ -1,0 +1,40 @@
+@import "../theme.css";
+
+.admin-header {
+  height: 64px;
+  padding: 0 24px;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-main);
+}
+
+.admin-header .left {
+  font-weight: 700;
+  color: var(--coffee-dark);
+  font-size: 18px;
+}
+
+.admin-header .left span {
+  margin-left: 6px;
+}
+
+.admin-header .nav {
+  display: flex;
+  gap: 16px;
+}
+
+.admin-header .nav a {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  color: var(--coffee-text);
+  font-weight: 500;
+}
+
+.admin-header .nav a.active {
+  background: var(--coffee-medium);
+  color: white;
+}

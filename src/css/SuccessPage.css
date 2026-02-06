@@ -1,0 +1,150 @@
+.success-page {
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--coffee-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* ===== HEADER ===== */
+.success-header {
+  text-align: center;
+  padding: 50px 20px 30px;
+  color: var(--coffee-dark);
+}
+
+.success-icon {
+  font-size: 70px;
+  color: var(--coffee-light);
+  margin-bottom: 16px;
+}
+
+.success-header h2 {
+  font-size: 22px;
+  margin: 6px 0;
+  font-weight: 700;
+}
+
+.success-header p {
+  color: var(--coffee-text);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+/* ===== CARD ===== */
+.success-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.success-card {
+  background: var(--white);
+  border-radius: 14px;
+  box-shadow: 0 4px 10px var(--shadow);
+  padding: 20px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.order-info p {
+  margin: 6px 0;
+  color: var(--coffee-dark);
+  font-size: 15px;
+}
+
+.label {
+  color: var(--coffee-text);
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 14px 0;
+}
+
+/* ===== DANH SÁCH MÓN ===== */
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.section-title {
+  font-weight: 600;
+  color: var(--coffee-dark);
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--coffee-text);
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1eee9;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.item-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--coffee-dark);
+}
+
+.item-qty {
+  color: var(--coffee-medium);
+  margin: 0 10px;
+}
+
+.item-price {
+  color: var(--coffee-dark);
+  font-weight: 600;
+}
+
+/* ===== TỔNG ===== */
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--coffee-dark);
+  font-size: 16px;
+}
+
+/* ===== FOOTER ===== */
+.success-footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--white);
+  width: 100%;
+  padding: 18px 0 26px;
+  box-shadow: 0 -2px 8px var(--shadow);
+  display: flex;
+  justify-content: center;
+}
+
+.btn-back {
+  background: var(--coffee-light);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 30px;
+  border-radius: 24px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background: var(--coffee-medium);
+  transform: scale(1.02);
+}

@@ -1,0 +1,106 @@
+.item-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+  margin-bottom: 14px;
+}
+
+.item-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Ảnh sản phẩm */
+.item-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 0; /* ảnh dưới */
+}
+
+/* Nút cộng góc phải */
+.btn-add-corner {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #4b2e16;
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 20px; /* 👈 size dấu cộng */
+  font-weight: 600;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+/* .btn-add-corner:hover {
+  background: #c28e4b;
+  transform: scale(1.1);
+} */
+
+
+/* .btn-add-corner svg {
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+} */
+
+/* Text phần dưới */
+.item-info {
+  padding: 10px 12px 14px 12px;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #4b2e16;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.item-price {
+  font-size: 14px;
+  color: #888;
+}
+
+/* ===== Highlight món đã chọn ===== */
+.item-card.selected {
+  border: 2px solid var(--coffee-light);
+  background: #fffaf3;
+  box-shadow: 0 4px 12px rgba(194, 142, 75, 0.25);
+}
+
+/* làm nút + nổi hơn khi đã chọn */
+.item-card.selected .btn-add-corner {
+  background: var(--coffee-light);
+  color: #fff;
+}
+
+/* ===== Badge số lượng ===== */
+.item-qty-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--coffee-dark);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 14px;
+  z-index: 2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}

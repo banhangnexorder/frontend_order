@@ -1,0 +1,60 @@
+@import "../theme.css";
+
+/* ===== BUTTON GROUP ===== */
+.btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ===== BASE BUTTON ===== */
+.btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: var(--font-main);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Active / Selected */
+.btn.active {
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+  border-color: var(--btn-active-bg);
+}
+
+/* ===== Optional variants ===== */
+.btn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn.full {
+  width: 100%;
+}
+
+
+/* ===== PRIMARY ===== */
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--coffee-medium),
+    var(--coffee-dark)
+  );
+  color: var(--white);
+}
+
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

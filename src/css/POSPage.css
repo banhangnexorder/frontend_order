@@ -1,0 +1,289 @@
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+
+/* === Layout chung === */
+.pos-page {
+  background: var(--coffee-bg);
+  min-height: 100vh;
+  width: 100vw;
+  color: var(--coffee-dark);
+  font-family: "Inter", sans-serif;
+}
+
+.pos-header {
+  background: var(--coffee-dark);
+  color: white;
+  padding: 14px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.tab-switch {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+  gap: 4px;
+}
+
+.tab-btn {
+  background: #ddd;
+  border: none;
+  padding: 8px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--coffee-dark);
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background: var(--coffee-light);
+  color: white;
+}
+
+/* === Nội dung === */
+.tab-content {
+  padding: 0 16px 32px;
+}
+
+/* === Kitchen === */
+.order-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.order-items {
+  margin: 8px 0;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--coffee-dark);
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  color: var(--coffee-light);
+}
+
+.status.done {
+  color: green;
+}
+
+.btn-done {
+  background: var(--coffee-light);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-done:hover {
+  background: var(--coffee-medium);
+}
+
+/* === Order tab === */
+.add-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.add-item input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px;
+  flex: 1;
+}
+
+.add-item button {
+  background: var(--coffee-light);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 36px;
+  cursor: pointer;
+}
+
+.btn-send {
+  background: var(--coffee-medium);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-send:hover {
+  background: var(--coffee-dark);
+}
+
+.divider {
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}
+/* ===== Kitchen Filter ===== */
+.kitchen-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.kitchen-filter button {
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f1f1f1;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--coffee-dark);
+}
+
+.kitchen-filter button.active {
+  background: var(--coffee-light);
+  color: white;
+  border-color: var(--coffee-light);
+}
+/* ===== Order highlight ===== */
+.order-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.order-card.highlight {
+  border-color: var(--coffee-light);
+  box-shadow: 0 0 0 3px rgba(186, 140, 99, 0.35);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+.kitchen-sort {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+
+.kitchen-sort button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--coffee-light);
+  color: white;
+  opacity: 0.7;
+}
+
+.kitchen-sort button.active {
+  background: var(--coffee-dark);
+  opacity: 1;
+}
+
+.kitchen-station {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kitchen-station button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 700;
+  background: var(--coffee-medium);
+  color: white;
+  opacity: 0.7;
+}
+
+.kitchen-station button.active {
+  background: var(--coffee-dark);
+  opacity: 1;
+}
+
+.kitchen-page {
+  min-height: 100vh;
+  background: var(--coffee-bg);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pos-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pos-tabs button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #eee;
+  font-weight: 600;
+}
+
+.pos-tabs button.active {
+  background: #4b2e16;
+  color: #fff;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.done {
+  color: green;
+}

@@ -1,0 +1,117 @@
+/* RESET */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background: var(--coffee-bg);
+  color: var(--coffee-dark);
+}
+
+/* FULL SCREEN */
+.kitchen-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--coffee-bg);
+  overflow: hidden;
+}
+
+/* HEADER */
+.kitchen-header {
+  height: 64px;
+  background: var(--coffee-dark);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+.kitchen-header h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.kitchen-clock {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* BODY */
+.kitchen-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* ===== ORDER CARD ===== */
+.order-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px var(--shadow);
+  border-left: 8px solid var(--coffee-medium);
+}
+
+.order-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--coffee-dark);
+}
+
+.order-items {
+  margin: 14px 0;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--coffee-dark);
+}
+
+.order-items li {
+  margin-bottom: 6px;
+}
+
+/* FOOTER */
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-total {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--coffee-medium);
+}
+
+/* BUTTON */
+.btn-done {
+  background: var(--coffee-light);
+  color: var(--white);
+  border: none;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+
+.btn-done:hover {
+  background: var(--coffee-medium);
+  transform: scale(1.03);
+}
+
+/* STATUS */
+.status.pending {
+  color: var(--coffee-light);
+}
+
+.status.done {
+  color: #16a34a; /* xanh lá để phân biệt hoàn thành */
+}
