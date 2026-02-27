@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL;
+const BASE = import.meta.env.VITE_STATIC_URL;
 
 export function getMenuImage(image) {
   if (!image) return DEFAULT;
