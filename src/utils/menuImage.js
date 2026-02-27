@@ -3,5 +3,5 @@ const DEFAULT = `https://shorthand.com/the-craft/raster-images/assets/5kVrMqC0wp
 
 export function getMenuImage(image) {
   if (!image) return DEFAULT;
-  return `${BASE}/${image}.webp`;
+  return `${BASE}/${image}`;
 }
