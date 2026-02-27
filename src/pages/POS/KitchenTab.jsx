@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { socket } from "../../services/socket";
 import { api } from "../../services/api";
+import { io } from "socket.io-client";
+
+export const socket = io(import.meta.env.VITE_SOCKET_URL, {
+  transports: ["websocket"],
+});
 
 export default function KitchenTab({ area = "all" }) {
   const [orders, setOrders] = useState([]);
