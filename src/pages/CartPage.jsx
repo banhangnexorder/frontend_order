@@ -37,7 +37,7 @@ export default function CartPage() {
     if (toppingsMap[menuId]) return;
 
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/menu/${menuId}/toppings`
+      `${import.meta.env.VITE_API_URL}/menu/${menuId}/toppings`
     );
     const data = await res.json();
 
