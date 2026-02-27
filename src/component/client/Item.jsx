@@ -31,7 +31,7 @@ export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
       {/* nội dung */}
       <div className="item-info">
         <div className="item-name">{name}</div>
-        <div className="item-price">{price.toLocaleString()}đ</div>
+        <div className="item-price">{price}đ</div>
       </div>
     </div>
   );

@@ -63,3 +63,8 @@ Frontend (React)
 | **staff**   | POS                                |
 | **kitchen** | Kitchen / KitchenFood / KitchenBar |
 | ❌           | Không role → login                 |
+
+
+DEV  → local developer
+STG  → staging (test trước khi release)
+PROD → production (khách dùng thật)
