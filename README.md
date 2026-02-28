@@ -68,3 +68,12 @@ Frontend (React)
 DEV  → local developer
 STG  → staging (test trước khi release)
 PROD → production (khách dùng thật)
+
+
+
+
+frontend_order
+ ├── main      → Vercel PROD
+ ├── staging   → Vercel STG
+ ├── develop
+ └── feature/*
