@@ -9,12 +9,15 @@
   min-height: 100vh;
   font-family: var(--font-main);
   color: var(--coffee-text);
+  width: 100vw;
+  justify-content: center;
 }
 
 /* ===== Title ===== */
 .kitchen-page h1 {
   color: var(--coffee-dark);
   margin-bottom: 24px;
+  text-align: center;
 }
 
 /* ===== Grid ===== */
