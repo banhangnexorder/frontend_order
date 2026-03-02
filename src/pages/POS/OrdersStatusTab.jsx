@@ -5,7 +5,7 @@ export default function OrdersStatusTab() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    api.get("/staff/orders").then(res => setOrders(res.data));
+    api.get("/orders").then(res => setOrders(res.data));
   }, []);
 
   return (

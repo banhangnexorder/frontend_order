@@ -1,6 +1,7 @@
 import { useState } from "react";
-import StaffMenuPage from "./StaffMenuPage";
-import OrdersStatusTab from "./OrdersStatusTab";
+import MenuPage from "../../pages/MenuPage";
+// import OrdersStatusTab from "./OrdersStatusTab";
+import AdminOrders from "../../admin/AdminOrders"
 
 export default function POSPage() {
   const [tab, setTab] = useState("order");
@@ -12,8 +13,8 @@ export default function POSPage() {
         <button onClick={() => setTab("status")}>📦 Đơn hàng</button>
       </div>
 
-      {tab === "order" && <StaffMenuPage />}
-      {tab === "status" && <OrdersStatusTab />}
+      {tab === "order" && <MenuPage />}
+      {tab === "status" && <AdminOrders />}
     </>
   );
 }
