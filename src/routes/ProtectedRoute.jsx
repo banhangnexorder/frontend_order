@@ -34,12 +34,11 @@ export default function ProtectedRoute({ children, roles = [] }) {
   if (roles.length > 0 && !roles.includes(user.role)) {
     console.warn("❌ Role not allowed:", user.role);
 
-    if (user.role === "staff") return <Navigate to="/admin" replace />;
+    if (user.role === "staff") return <Navigate to="/orders" replace />;
     if (user.role === "kitchen") return <Navigate to="/kitchen" replace />;
 
     return <Navigate to="/admin/login" replace />;
   }
 
-  // ✅ OK
   return children;
 }

@@ -44,9 +44,9 @@ export default function AdminOrders() {
     setQuick("year");
   };
 
-  // useEffect(() => {
-  //   selectToday();
-  // }, []);
+  useEffect(() => {
+    selectToday();
+  }, []);
 
   return (
     <div className="admin-layout">
