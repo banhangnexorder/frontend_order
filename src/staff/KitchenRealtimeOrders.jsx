@@ -33,9 +33,15 @@ export default function KitchenRealtimeOrders() {
 
     // 🔥 Khi đơn được update trạng thái
     socket.on("order_updated", (updated) => {
-      setOrders(prev =>
-        prev.map(o => (o.id === updated.id ? updated : o))
-      );
+      setOrders(prev => {
+        // Nếu đơn không còn pending → xoá khỏi danh sách
+        if (updated.status !== "pending") {
+          return prev.filter(o => o.id !== updated.id);
+        }
+
+        // Nếu vẫn pending → update bình thường
+        return prev.map(o => (o.id === updated.id ? updated : o));
+      });
     });
 
     return () => {
@@ -45,9 +51,17 @@ export default function KitchenRealtimeOrders() {
   }, []);
 
   // Đổi trạng thái
-  const updateStatus = (id, status) => {
-    api.patch(`/orders/${id}`, { status })
-      .catch(err => console.error("UPDATE ERROR:", err));
+  const updateStatus = async (id, status) => {
+      try {
+      await api.put(`/orders/${id}/status`, { status });
+
+      if (status !== "pending") {
+        setOrders(prev => prev.filter(o => o.id !== id));
+      }
+
+    } catch (err) {
+      console.error("UPDATE ERROR:", err);
+    }
   };
 
   return (
@@ -86,12 +100,12 @@ export default function KitchenRealtimeOrders() {
             </div>
 
             <div className="actions">
-              <button
+              {/* <button
                 className="btn doing"
                 onClick={() => updateStatus(order.id, "pending")}
               >
                 Nhận làm
-              </button>
+              </button> */}
 
               <button
                 className="btn done"

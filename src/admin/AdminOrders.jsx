@@ -4,6 +4,12 @@ import "../css/admin/AdminOrders.css";
 import { todayStr } from "../utils/todayStr.jsx";
 import AdminHeader from "./AdminHeader";
 
+const statusMap = {
+  pending: "⏳ Đang làm",
+  done: "✅ Hoàn thành",
+  cancelled: "❌ Đã huỷ"
+};
+
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -131,7 +137,7 @@ export default function AdminOrders() {
                       <span className="order-table"> • Bàn {order.table_id}</span>
                     </div>
                     <span className={`status-badge ${order.status}`}>
-                      {order.status === "pending" ? "Đang làm" : "Hoàn thành"}
+                      {statusMap[order.status]}
                     </span>
                   </div>
 
