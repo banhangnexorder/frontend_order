@@ -6,9 +6,9 @@ export default function KitchenScreen() {
     <div className="kitchen-screen">
       <header className="kitchen-header">
         <h1>🍳 KHU BẾP</h1>
-        <span className="kitchen-clock">
+        {/* <span className="kitchen-clock">
           {new Date().toLocaleTimeString("vi-VN")}
-        </span>
+        </span> */}
       </header>
 
       <main className="kitchen-body">

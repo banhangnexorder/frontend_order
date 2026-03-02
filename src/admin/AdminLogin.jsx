@@ -30,7 +30,7 @@ export default function AdminLogin() {
       if (res.data.role === "admin") {
         window.location.href = "/admin";
       } else if (res.data.role === "staff") {
-        window.location.href = "/pos";
+        window.location.href = "/admin";
       } else if (res.data.role === "kitchen") {
         window.location.href = "/kitchen";
       } else {

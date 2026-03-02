@@ -8,13 +8,13 @@ export default function POSPage() {
 
   return (
     <>
-      <div className="pos-tabs">
+      {/* <div className="pos-tabs">
         <button onClick={() => setTab("order")}>🧾 Order</button>
         <button onClick={() => setTab("status")}>📦 Đơn hàng</button>
-      </div>
+      </div> */}
 
-      {tab === "order" && <MenuPage />}
-      {tab === "status" && <AdminOrders />}
+      {/* {tab === "order" && <MenuPage />} */}
+      <AdminOrders />
     </>
   );
 }
