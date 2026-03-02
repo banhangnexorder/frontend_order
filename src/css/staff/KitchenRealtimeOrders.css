@@ -1,0 +1,153 @@
+/* ===============================
+   KITCHEN REALTIME ORDERS
+   Theo theme coffee system
+================================= */
+
+.kitchen-page {
+  padding: 24px;
+  background: var(--coffee-bg);
+  min-height: 100vh;
+  font-family: var(--font-main);
+  color: var(--coffee-text);
+}
+
+/* ===== Title ===== */
+.kitchen-page h1 {
+  color: var(--coffee-dark);
+  margin-bottom: 24px;
+}
+
+/* ===== Grid ===== */
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Card ===== */
+.order-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 6px 18px var(--shadow);
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== Status Border ===== */
+.order-card.pending {
+  border-color: var(--status-pending);
+}
+
+.order-card.done {
+  border-color: var(--status-done);
+}
+
+.order-card.cancelled {
+  border-color: #b91c1c;
+}
+
+/* ===== Header ===== */
+.order-card .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--coffee-dark);
+}
+
+.order-card .time {
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* ===== Items ===== */
+.items {
+  background: #f5f2ed;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.item {
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+/* ===== Status Text ===== */
+.status {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.order-card.pending .status {
+  color: var(--status-pending);
+}
+
+.order-card.done .status {
+  color: var(--status-done);
+}
+
+.order-card.cancelled .status {
+  color: #b91c1c;
+}
+
+/* =========================
+   BUTTON SYSTEM (THEME)
+========================= */
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Active trạng thái */
+
+.btn.doing.active,
+.btn.done.active,
+.btn.cancel.active {
+  background: var(--btn-active-bg);
+  color: var(--btn-active-text);
+  border-color: var(--btn-active-bg);
+}
+
+/* Màu riêng từng nút */
+
+.btn.doing {
+  color: var(--status-pending);
+}
+
+.btn.done {
+  color: var(--status-done);
+}
+
+.btn.cancel {
+  color: #b91c1c;
+}
+
+/* ===== Empty state ===== */
+.empty {
+  text-align: center;
+  padding: 40px;
+  opacity: 0.6;
+}

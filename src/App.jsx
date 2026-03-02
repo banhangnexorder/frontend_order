@@ -27,6 +27,8 @@ import AdminMenuManagement from "./admin/AdminMenuManagement";
 
 import { MenuProvider } from "./context/MenuContext";
 
+import KitchenRealtimeOrders from "./staff/KitchenRealtimeOrders"
+
 export default function App() {
   return (
     <MenuProvider>
@@ -85,6 +87,15 @@ export default function App() {
             element={
               <ProtectedRoute roles={["staff", "admin"]}>
                 <POSPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/staff/order"
+            element={
+              <ProtectedRoute roles={["staff", "admin"]}>
+                <KitchenRealtimeOrders />
               </ProtectedRoute>
             }
           />
