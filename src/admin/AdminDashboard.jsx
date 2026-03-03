@@ -51,6 +51,7 @@ export default function AdminDashboard() {
         <StatBox label="Tổng đơn" value={stats.totalOrders} />
         <StatBox label="Đang làm" value={stats.pendingOrders} color="pending" />
         <StatBox label="Hoàn thành" value={stats.doneOrders} color="done" />
+        <StatBox label="Đã huỷ" value={stats.cancelledOrders} color="cancelled" />
         <StatBox
           label="Doanh thu"
           value={stats.revenue.toLocaleString() + "đ"}

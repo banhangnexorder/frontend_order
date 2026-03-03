@@ -154,3 +154,28 @@
   padding: 40px;
   opacity: 0.6;
 }
+
+.order-item {
+  margin-bottom: 12px;
+}
+
+.item-main {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.item-toppings {
+  margin-left: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.topping-line {
+  margin-top: 2px;
+}
+
+.item-note {
+  margin-left: 20px;
+  font-style: italic;
+  color: #d97706;
+}

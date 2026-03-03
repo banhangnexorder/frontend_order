@@ -86,9 +86,32 @@ export default function KitchenRealtimeOrders() {
             </div>
 
             <div className="items">
-              {order.items?.map(item => (
-                <div key={item.id} className="item">
-                  {item.name} × {item.qty}
+              {order.items.map((item) => (
+                <div key={item.id} className="order-item">
+                  
+                  <div className="item-main">
+                    {item.qty} x {item.name}
+                  </div>
+
+                  {/* Hiển thị topping nếu có */}
+                  {item.has_toppings && item.toppings?.length > 0 && (
+                    <div className="item-toppings">
+                      {item.toppings.map((top) => (
+                        <div key={top.id} className="topping-line">
+                          + {top.name} x {top.qty}
+                          {top.qty > 1 && ` x${top.qty}`}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Ghi chú nếu có */}
+                  {item.note && (
+                    <div className="item-note">
+                      📝 {item.note}
+                    </div>
+                  )}
+
                 </div>
               ))}
             </div>
