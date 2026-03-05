@@ -108,13 +108,18 @@ export default function AdminOrders() {
             </div>
 
             <div className="status-buttons">
-              {["all", "pending", "done"].map((s) => (
+              {[
+                { key: "all", label: "Tất cả" },
+                { key: "pending", label: "Đang làm" },
+                { key: "done", label: "Hoàn thành" },
+                { key: "cancelled", label: "Đã huỷ" },
+              ].map((s) => (
                 <button
-                  key={s}
-                  className={`status-btn ${status === s ? "active" : ""}`}
-                  onClick={() => setStatus(s)}
+                  key={s.key}
+                  className={`status-btn ${status === s.key ? "active" : ""}`}
+                  onClick={() => setStatus(s.key)}
                 >
-                  {s === "all" ? "Tất cả" : s === "pending" ? "Đang làm" : "Hoàn thành"}
+                  {s.label}
                 </button>
               ))}
             </div>

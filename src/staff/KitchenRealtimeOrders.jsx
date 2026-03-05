@@ -1,68 +1,8 @@
-import { useEffect, useState } from "react";
-import { api } from "../services/api";
-import { socket } from "../services/socket"; // socket bạn đã tạo
 import "../css/staff/KitchenRealtimeOrders.css";
-import { todayStr } from "../utils/todayStr.jsx";
-
-
+import { useKitchenOrders } from "../hooks/useKitchenOrders";
 
 export default function KitchenRealtimeOrders() {
-  const [orders, setOrders] = useState([]);
-
-  // Load đơn ban đầu
-  const loadOrders = () => {
-    api
-        .get("/admin/orders", {
-        params: {
-            status: "pending",
-            from: todayStr(),
-            to: todayStr(),
-        },
-        })
-        .then(res => setOrders(res.data || []))
-        .catch(err => console.error("LOAD ERROR:", err));
-    };
-
-  useEffect(() => {
-    loadOrders();
-
-    // 🔥 Nhận đơn mới realtime
-    socket.on("new_order", (order) => {
-      setOrders(prev => [order, ...prev]);
-    });
-
-    // 🔥 Khi đơn được update trạng thái
-    socket.on("order_updated", (updated) => {
-      setOrders(prev => {
-        // Nếu đơn không còn pending → xoá khỏi danh sách
-        if (updated.status !== "pending") {
-          return prev.filter(o => o.id !== updated.id);
-        }
-
-        // Nếu vẫn pending → update bình thường
-        return prev.map(o => (o.id === updated.id ? updated : o));
-      });
-    });
-
-    return () => {
-      socket.off("new_order");
-      socket.off("order_updated");
-    };
-  }, []);
-
-  // Đổi trạng thái
-  const updateStatus = async (id, status) => {
-      try {
-      await api.put(`/orders/${id}/status`, { status });
-
-      if (status !== "pending") {
-        setOrders(prev => prev.filter(o => o.id !== id));
-      }
-
-    } catch (err) {
-      console.error("UPDATE ERROR:", err);
-    }
-  };
+  const { orders, updateStatus } = useKitchenOrders();
 
   return (
     <div className="kitchen-page">
@@ -73,9 +13,8 @@ export default function KitchenRealtimeOrders() {
       )}
 
       <div className="orders-grid">
-        {orders.map(order => (
+        {orders.map((order) => (
           <div key={order.id} className={`order-card ${order.status}`}>
-            
             <div className="header">
               <div>
                 <b>#{order.id}</b> • Bàn {order.table_id}
@@ -88,30 +27,25 @@ export default function KitchenRealtimeOrders() {
             <div className="items">
               {order.items.map((item) => (
                 <div key={item.id} className="order-item">
-                  
                   <div className="item-main">
                     {item.qty} x {item.name}
                   </div>
 
-                  {/* Hiển thị topping nếu có */}
                   {item.has_toppings && item.toppings?.length > 0 && (
                     <div className="item-toppings">
                       {item.toppings.map((top) => (
                         <div key={top.id} className="topping-line">
                           + {top.name} x {top.qty}
-                          {top.qty > 1 && ` x${top.qty}`}
                         </div>
                       ))}
                     </div>
                   )}
 
-                  {/* Ghi chú nếu có */}
                   {item.note && (
                     <div className="item-note">
                       📝 {item.note}
                     </div>
                   )}
-
                 </div>
               ))}
             </div>
@@ -123,13 +57,6 @@ export default function KitchenRealtimeOrders() {
             </div>
 
             <div className="actions">
-              {/* <button
-                className="btn doing"
-                onClick={() => updateStatus(order.id, "pending")}
-              >
-                Nhận làm
-              </button> */}
-
               <button
                 className="btn done"
                 onClick={() => updateStatus(order.id, "done")}
@@ -144,7 +71,6 @@ export default function KitchenRealtimeOrders() {
                 Huỷ
               </button>
             </div>
-
           </div>
         ))}
       </div>
