@@ -77,3 +77,10 @@ frontend_order
  ├── staging   → Vercel STG
  ├── develop
  └── feature/*
+
+
+
+
+
+ 1. tenants: đơn vị sử dụng phần mềm
+ 2. 

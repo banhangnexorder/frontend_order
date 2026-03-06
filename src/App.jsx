@@ -17,26 +17,36 @@ import KitchenTab from "./pages/POS/KitchenTab";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminOrders from "./admin/AdminOrders";
+import AdminUploadMenuImage from "./admin/AdminUploadMenuImages";
+import AdminMenuManagement from "./admin/AdminMenuManagement";
 
 /* ===== AUTH ===== */
 import ProtectedRoute from "./routes/ProtectedRoute";
 
-import AdminUploadMenuImage from "./admin/AdminUploadMenuImages";
-
-import AdminMenuManagement from "./admin/AdminMenuManagement";
-
+/* ===== CONTEXT ===== */
 import { MenuProvider } from "./context/MenuContext";
 
-import KitchenRealtimeOrders from "./staff/KitchenRealtimeOrders"
+/* ===== STAFF ===== */
+import KitchenRealtimeOrders from "./staff/KitchenRealtimeOrders";
 
 export default function App() {
   return (
-    <MenuProvider>
-    <CartProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+
+      <CartProvider>
+
         <Routes>
-          {/* ===== CLIENT ===== */}
-          <Route path="/" element={<MenuPage />} />
+
+          {/* ===== CLIENT MENU (QR MENU) ===== */}
+          <Route
+            path="/"
+            element={
+              <MenuProvider>
+                <MenuPage />
+              </MenuProvider>
+            }
+          />
+
           <Route path="/cart" element={<CartPage />} />
           <Route path="/success" element={<SuccessPage />} />
 
@@ -80,8 +90,7 @@ export default function App() {
             }
           />
 
-
-          {/* ===== STAFF / POS ===== */}
+          {/* ===== POS ===== */}
           <Route
             path="/pos"
             element={
@@ -91,6 +100,7 @@ export default function App() {
             }
           />
 
+          {/* ===== STAFF ORDERS ===== */}
           <Route
             path="/staff/order"
             element={
@@ -130,9 +140,11 @@ export default function App() {
 
           {/* ===== FALLBACK ===== */}
           <Route path="*" element={<Navigate to="/" replace />} />
+
         </Routes>
-      </BrowserRouter>
-    </CartProvider>
-    </MenuProvider>
+
+      </CartProvider>
+
+    </BrowserRouter>
   );
 }
