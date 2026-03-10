@@ -10,29 +10,29 @@ export function MenuProvider({ children }) {
 
   useEffect(() => {
 
-    const tableInfo = JSON.parse(localStorage.getItem("tableInfo"));
+    const params = new URLSearchParams(window.location.search);
+    const store_id = params.get("store");
 
-    if (!tableInfo?.store) {
-      setError("Missing store_id");
+    console.log("STORE:", store_id);
+    console.log("FULL URL:", window.location.href);
+    console.log("SEARCH:", window.location.search);
+
+    if (!store_id) {
       setLoading(false);
       return;
     }
 
-    const store_id = tableInfo.store;
-
-    api
-      .get("/menu", {
-        params: { store_id }
-      })
-      .then((res) => {
-        const grouped = groupMenuByCategory(res.data);
-        setMenu(grouped);
-      })
-      .catch((err) => {
-        console.error("❌ LOAD MENU ERROR:", err);
-        setError(err);
-      })
-      .finally(() => setLoading(false));
+    api.get("/menu", {
+      params: { store_id }
+    })
+    .then(res => {
+      console.log("MENU RAW:", res.data);
+      setMenu(groupMenuByCategory(res.data));
+    })
+    .catch(err => {
+      console.error("MENU ERROR:", err);
+    })
+    .finally(() => setLoading(false));
 
   }, []);
 

@@ -22,6 +22,8 @@ export default function MenuPage() {
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("all");
 
+  console.log("CATEGORY:", category);
+
   useEffect(() => {
     const table = searchParams.get("table");
     const store = searchParams.get("store");
@@ -37,7 +39,7 @@ export default function MenuPage() {
     if (!menu || menu.length === 0) return [];
 
     const key = normalizeText(keyword).toLowerCase();
-
+    console.log("MENU:", menu);
     return menu
       .filter((cat) => category === "all" || cat.id === category)
       .map((cat) => ({
@@ -99,7 +101,7 @@ export default function MenuPage() {
           </div>
         ) : error ? (
           <div className="error-mobile">
-            <FiAlertCircle size={48} />
+            {/* <FiAlertCircle size={48} /> */}
             <p>Lỗi tải menu. Kiểm tra kết nối và thử lại nhé!</p>
           </div>
         ) : filteredMenu.length === 0 ? (

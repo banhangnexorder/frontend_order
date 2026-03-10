@@ -39,7 +39,7 @@ export default function App() {
 
           {/* ===== CLIENT MENU (QR MENU) ===== */}
           <Route
-            path="/"
+            path="/menu"
             element={
               <MenuProvider>
                 <MenuPage />
