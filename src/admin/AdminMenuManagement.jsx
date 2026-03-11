@@ -64,7 +64,7 @@ export default function AdminMenuManagement() {
       const form = new FormData();
       imageFiles.forEach((file) => form.append("images", file));
 
-      const res = await api.post("/menu/upload-menu-images", form, {
+      const res = await api.post("/admin/menu-images/upload", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
