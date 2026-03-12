@@ -84,3 +84,7 @@ frontend_order
 
  1. tenants: đơn vị sử dụng phần mềm
  2. 
+
+
+ - staff/order = là màn hình nhận đơn của bếp
+ - 

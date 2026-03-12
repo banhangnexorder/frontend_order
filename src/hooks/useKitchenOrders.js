@@ -80,6 +80,7 @@ export function useKitchenOrders() {
 
     // 🔄 Order updated
     socket.on("order_updated", (updated) => {
+      console.log("socket update", updated);
       setOrders((prev) => {
         if (updated.status !== "pending") {
           return prev.filter((o) => o.id !== updated.id);
