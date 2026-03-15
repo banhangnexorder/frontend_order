@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "../services/api";
 import { socket } from "../services/socket";
-import { todayStr } from "../utils/todayStr.jsx";
+import { todayStr } from "../utils/todayStr";
+import { getUser } from "../services/auth";
 
 export function useKitchenOrders() {
   const [orders, setOrders] = useState([]);
+
   const audioRef = useRef(null);
   const lastPlayRef = useRef(0);
 
-  // 🔊 Play sound có throttle
+  /* =========================
+      PLAY SOUND (ANTI SPAM)
+  ========================= */
   const playSound = () => {
     if (
       audioRef.current &&
@@ -21,14 +25,18 @@ export function useKitchenOrders() {
     }
   };
 
-  // 📦 Normalize order
+  /* =========================
+      NORMALIZE ORDER
+  ========================= */
   const normalizeOrder = (order) => ({
     ...order,
     created_ts: new Date(order.created_at).getTime(),
     items: order.items || [],
   });
 
-  // 📥 Load initial orders
+  /* =========================
+      LOAD INITIAL ORDERS
+  ========================= */
   const loadOrders = async () => {
     try {
       const res = await api.get("/admin/orders", {
@@ -49,7 +57,9 @@ export function useKitchenOrders() {
     }
   };
 
-  // 🔄 Update status
+  /* =========================
+      UPDATE STATUS
+  ========================= */
   const updateStatus = async (id, status) => {
     try {
       await api.put(`/orders/${id}/status`, { status });
@@ -58,16 +68,30 @@ export function useKitchenOrders() {
     }
   };
 
+  /* =========================
+      SOCKET EVENTS
+  ========================= */
   useEffect(() => {
+
+    const user = getUser();
+    const storeId = user?.store_id;
+
+    if (storeId) {
+      socket.emit("join_store", storeId);
+      console.log("JOIN STORE:", storeId);
+    }
+
+    /* DEBUG SOCKET */
+    socket.onAny((event, ...args) => {
+      console.log("SOCKET EVENT:", event, args);
+    });
+
     loadOrders();
 
-    // 🔊 Init audio
-    audioRef.current = new Audio("/sound.wav");
+    audioRef.current = new Audio("/sounds/notification.mp3");
     audioRef.current.preload = "auto";
-    audioRef.current.load();
 
-    // 🆕 New order
-    socket.on("new_order", (order) => {
+    const handleNewOrder = (order) => {
       setOrders((prev) => {
         if (prev.some((o) => o.id === order.id)) return prev;
 
@@ -76,11 +100,9 @@ export function useKitchenOrders() {
       });
 
       playSound();
-    });
+    };
 
-    // 🔄 Order updated
-    socket.on("order_updated", (updated) => {
-      console.log("socket update", updated);
+    const handleOrderUpdated = (updated) => {
       setOrders((prev) => {
         if (updated.status !== "pending") {
           return prev.filter((o) => o.id !== updated.id);
@@ -90,17 +112,21 @@ export function useKitchenOrders() {
           o.id === updated.id ? normalizeOrder(updated) : o
         );
       });
-    });
+    };
+
+    socket.on("new_order", handleNewOrder);
+    socket.on("order_updated", handleOrderUpdated);
 
     return () => {
-      socket.off("new_order");
-      socket.off("order_updated");
+      socket.off("new_order", handleNewOrder);
+      socket.off("order_updated", handleOrderUpdated);
 
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
+
   }, []);
 
   return {

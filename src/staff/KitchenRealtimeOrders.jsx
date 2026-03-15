@@ -19,6 +19,7 @@ export default function KitchenRealtimeOrders() {
               <div>
                 <b>#{order.id}</b> • Bàn {order.table_id}
               </div>
+
               <span className="time">
                 {new Date(order.created_at).toLocaleTimeString("vi-VN")}
               </span>
@@ -31,15 +32,19 @@ export default function KitchenRealtimeOrders() {
                     {item.qty} x {item.name}
                   </div>
 
-                  {item.has_toppings && item.toppings?.length > 0 && (
-                    <div className="item-toppings">
-                      {item.toppings.map((top) => (
-                        <div key={top.id} className="topping-line">
-                          + {top.name} x {top.qty}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  {item.has_toppings &&
+                    item.toppings?.length > 0 && (
+                      <div className="item-toppings">
+                        {item.toppings.map((top) => (
+                          <div
+                            key={top.id}
+                            className="topping-line"
+                          >
+                            + {top.name} x {top.qty}
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                   {item.note && (
                     <div className="item-note">
@@ -59,14 +64,18 @@ export default function KitchenRealtimeOrders() {
             <div className="actions">
               <button
                 className="btn done"
-                onClick={() => updateStatus(order.id, "done")}
+                onClick={() =>
+                  updateStatus(order.id, "done")
+                }
               >
                 Hoàn thành
               </button>
 
               <button
                 className="btn cancel"
-                onClick={() => updateStatus(order.id, "cancelled")}
+                onClick={() =>
+                  updateStatus(order.id, "cancelled")
+                }
               >
                 Huỷ
               </button>
