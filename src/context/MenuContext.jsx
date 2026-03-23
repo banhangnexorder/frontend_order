@@ -28,7 +28,9 @@ export function MenuProvider({ children }) {
 
       // 👉 CALL API (KHÔNG cần store_id nữa)
       api.get("/menu", {
-        params: { t: token }
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then(res => {
         console.log("MENU RAW:", res.data);
