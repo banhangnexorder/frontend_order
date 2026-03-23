@@ -25,14 +25,29 @@ export default function MenuPage() {
   console.log("CATEGORY:", category);
 
   useEffect(() => {
-    const table = searchParams.get("table");
-    const store = searchParams.get("store");
-    const info = { table, store };
-    setTableInfo(info);
+    const token = searchParams.get("t");
 
-    if (table && store) {
-      localStorage.setItem("tableInfo", JSON.stringify(info));
+    if (!token) {
+      console.error("❌ Missing QR token");
+      return;
     }
+
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+
+      const info = {
+        table: payload.table_id,
+        store: payload.store_id
+      };
+
+      setTableInfo(info);
+
+      localStorage.setItem("tableInfo", JSON.stringify(info));
+
+    } catch (err) {
+      console.error("❌ Invalid QR token", err);
+    }
+
   }, [searchParams]);
 
   const filteredMenu = useMemo(() => {

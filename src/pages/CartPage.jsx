@@ -61,13 +61,14 @@ export default function CartPage() {
 
   /* ===== SUBMIT ===== */
   const submitOrder = async () => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("t");
+
     const res = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        table_id: tableInfo.table,
-        store_id: tableInfo.store,
-        source: "qr",
+        t: token,     // 🔥 QUAN TRỌNG
         items: cart,
         total
       })
@@ -82,11 +83,8 @@ export default function CartPage() {
 
     clearCart();
 
-    // ✅ ĐÂY LÀ DÒNG QUYẾT ĐỊNH
     navigate("/success", {
-      state: {
-        order: data.order
-      }
+      state: { order: data.order }
     });
   };
 

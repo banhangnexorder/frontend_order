@@ -11,28 +11,40 @@ export function MenuProvider({ children }) {
   useEffect(() => {
 
     const params = new URLSearchParams(window.location.search);
-    const store_id = params.get("store");
+    const token = params.get("t");
 
-    console.log("STORE:", store_id);
-    console.log("FULL URL:", window.location.href);
-    console.log("SEARCH:", window.location.search);
+    console.log("TOKEN:", token);
 
-    if (!store_id) {
+    if (!token) {
       setLoading(false);
+      setError("Missing QR token");
       return;
     }
 
-    api.get("/menu", {
-      params: { store_id }
-    })
-    .then(res => {
-      console.log("MENU RAW:", res.data);
-      setMenu(groupMenuByCategory(res.data));
-    })
-    .catch(err => {
-      console.error("MENU ERROR:", err);
-    })
-    .finally(() => setLoading(false));
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+
+      console.log("QR PAYLOAD:", payload);
+
+      // 👉 CALL API (KHÔNG cần store_id nữa)
+      api.get("/menu", {
+        params: { t: token }
+      })
+      .then(res => {
+        console.log("MENU RAW:", res.data);
+        setMenu(groupMenuByCategory(res.data));
+      })
+      .catch(err => {
+        console.error("MENU ERROR:", err);
+        setError(err.message);
+      })
+      .finally(() => setLoading(false));
+
+    } catch (err) {
+      console.error("❌ INVALID TOKEN:", err);
+      setError("Token không hợp lệ");
+      setLoading(false);
+    }
 
   }, []);
 
