@@ -64,15 +64,17 @@ export default function CartPage() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("t");
 
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        t: token,     // 🔥 QUAN TRỌNG
-        items: cart,
-        total
-      })
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/orders?t=${token}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cart,
+          total
+        })
+      }
+    );
 
     const data = await res.json();
 
