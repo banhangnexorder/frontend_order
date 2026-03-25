@@ -28,7 +28,7 @@ export function MenuProvider({ children }) {
       // 👉 CALL API (KHÔNG cần store_id nữa)
       api.get("/menu", {
         headers: {
-          Authorization: `Bearer ${token}`
+          "x-qr-token": token
         }
       })
       .then(res => {
