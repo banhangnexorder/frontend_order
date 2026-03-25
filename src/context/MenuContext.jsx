@@ -7,14 +7,13 @@ export function MenuProvider({ children }) {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const hasFetched = useRef(false);
 
   useEffect(() => {
-
-    if (hasFetched.current) return;
-
-    hasFetched.current = true;
-
+    if (menu.length > 0) {
+      console.log("⛔ Skip fetch (menu cached)");
+      setLoading(false);
+      return;
+    }
     const token = localStorage.getItem("qr_token");
 
     console.log("TOKEN:", token);
