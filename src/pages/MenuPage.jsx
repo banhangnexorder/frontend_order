@@ -32,6 +32,9 @@ export default function MenuPage() {
       return;
     }
 
+    //lưu token
+    localStorage.setItem("qr_token", token);
+
     try {
       const payload = JSON.parse(atob(token.split(".")[1]));
 

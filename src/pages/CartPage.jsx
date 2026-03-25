@@ -61,8 +61,7 @@ export default function CartPage() {
 
   /* ===== SUBMIT ===== */
   const submitOrder = async () => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("t");
+    const token = localStorage.getItem("qr_token");
 
     const res = await fetch(`${import.meta.env.VITE_API_URL}/orders`, {
       method: "POST",
