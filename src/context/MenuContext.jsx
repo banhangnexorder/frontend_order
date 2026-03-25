@@ -7,10 +7,15 @@ export function MenuProvider({ children }) {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
 
-     const token = localStorage.getItem("qr_token");
+    if (hasFetched.current) return;
+
+    hasFetched.current = true;
+
+    const token = localStorage.getItem("qr_token");
 
     console.log("TOKEN:", token);
 
