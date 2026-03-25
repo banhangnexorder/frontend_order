@@ -10,8 +10,7 @@ export function MenuProvider({ children }) {
 
   useEffect(() => {
 
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("t");
+     const token = localStorage.getItem("qr_token");
 
     console.log("TOKEN:", token);
 
