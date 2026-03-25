@@ -6,18 +6,7 @@ import { formatCurrency } from "../utils/formatCurrency";
 export default function SuccessPage() {
   const location = useLocation();
   const order = location.state?.order || {};
-
-  // === Thêm dòng này để print/log order ===
-  console.log("=== ORDER DATA FROM SUCCESS PAGE ===");
-  console.log("Full order object:", order);
-  console.log("Order ID:", order.id);
-  console.log("Table:", order.table_id);
-  console.log("Store:", order.store_id);
-  console.log("Time:", order.time);
-  console.log("Items:", order.items);
-  console.log("Total:", order.total);
-  console.table(order.items || []);  // Nếu muốn xem danh sách món dạng bảng đẹp trong console
-  console.log("Formatted thử:", (Number(order.total) || 0).toLocaleString("vi-VN") + "đ");
+  const token = localStorage.getItem("qr_token");
 
   return (
     <div className="success-page">
@@ -67,7 +56,7 @@ export default function SuccessPage() {
 
       {/* ===== FOOTER ===== */}
       <footer className="success-footer">
-        <Link to="/" className="btn-back">
+        <Link to={`/menu?t=${token}`} className="btn-back">
           ← Tiếp tục gọi món
         </Link>
       </footer>
