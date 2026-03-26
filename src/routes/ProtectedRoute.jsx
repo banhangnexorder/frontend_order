@@ -19,14 +19,14 @@ export default function ProtectedRoute({ children, roles = [] }) {
     console.log("👤 USER:", user);
   } catch (err) {
     console.error("❌ Invalid token", err);
-    localStorage.removeItem("token");
+    localStorage.removeItem("admin_token");
     return <Navigate to="/admin/login" replace />;
   }
 
   // ❌ Token không có role
   if (!user?.role) {
     console.error("❌ Token has no role");
-    localStorage.removeItem("token");
+    localStorage.removeItem("admin_token");
     return <Navigate to="/admin/login" replace />;
   }
 

@@ -24,7 +24,7 @@ export default function AdminLogin() {
       });
 
       // ✅ LƯU TOKEN
-      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("admin_token", res.data.token);
 
       // ✅ REDIRECT THEO ROLE
       if (res.data.role === "admin") {
