@@ -7,14 +7,26 @@ export const api = axios.create({
 /* 🔥 AUTO GẮN TOKEN */
 api.interceptors.request.use((config) => {
 
-  const params = new URLSearchParams(window.location.search);
-  const token = params.get("t");
+  const url = config.url || "";
 
-  if (token) {
-    config.params = {
-      ...config.params,
-      t: token
-    };
+  /* ===== ADMIN ===== */
+  if (url.includes("/admin")) {
+    const adminToken = localStorage.getItem("admin_token");
+
+    if (adminToken) {
+      config.headers.Authorization = `Bearer ${adminToken}`;
+    }
+
+    return config;
+  }
+
+  /* ===== QR ===== */
+  if (url.includes("/menu") || url.includes("/orders")) {
+    const qrToken = localStorage.getItem("qr_token");
+
+    if (qrToken) {
+      config.headers["x-qr-token"] = qrToken;
+    }
   }
 
   return config;

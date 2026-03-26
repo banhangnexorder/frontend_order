@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 export default function ProtectedRoute({ children, roles = [] }) {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("admin_token");
 
   console.log("🔐 TOKEN:", token);
 
