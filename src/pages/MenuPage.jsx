@@ -28,7 +28,7 @@ export default function MenuPage() {
     const token = searchParams.get("t");
 
     if (!token) {
-      console.error("❌ Missing QR token");
+      console.error("Missing QR token");
       return;
     }
 
