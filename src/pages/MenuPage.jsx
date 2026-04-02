@@ -46,6 +46,7 @@ export default function MenuPage() {
       setTableInfo(info);
 
       localStorage.setItem("tableInfo", JSON.stringify(info));
+      console.log("tableInfo:::::", JSON.stringify(info));
 
     } catch (err) {
       console.error("❌ Invalid QR token", err);
