@@ -6,30 +6,17 @@ export const api = axios.create({
 
 /* 🔥 AUTO GẮN TOKEN */
 api.interceptors.request.use((config) => {
-  const url = config.url || "";
-
   const adminToken = localStorage.getItem("admin_token");
   const qrToken = localStorage.getItem("qr_token");
 
-  /* ===== ADMIN APIs ===== */
-  if (
-    url.includes("/admin") ||
-    url.includes("/orders/") // 👈 có id => admin/staff
-  ) {
-    if (adminToken) {
-      config.headers.Authorization = `Bearer ${adminToken}`;
-    }
-    return config;
+  if (adminToken) {
+    config.headers.Authorization = `Bearer ${adminToken}`;
   }
-  /* ===== QR APIs ===== */
-  if (
-    url === "/orders" ||
-    url.includes("/menu")
-  ) {
-    if (qrToken) {
-      config.headers["x-qr-token"] = qrToken;
-    }
+
+  if (qrToken) {
+    config.headers["x-qr-token"] = qrToken;
   }
+
   return config;
 });
 
