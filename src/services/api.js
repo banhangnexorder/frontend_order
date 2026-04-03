@@ -21,17 +21,15 @@ api.interceptors.request.use((config) => {
     }
     return config;
   }
-
   /* ===== QR APIs ===== */
   if (
-    url === "/orders" ||        // 👈 create order
+    url === "/orders" ||
     url.includes("/menu")
   ) {
     if (qrToken) {
       config.headers["x-qr-token"] = qrToken;
     }
   }
-
   return config;
 });
 
