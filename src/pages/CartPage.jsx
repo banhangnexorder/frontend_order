@@ -7,7 +7,7 @@ import { FiArrowLeft, FiMinus, FiPlus } from "react-icons/fi";
 import { getMenuImage } from "../utils/menuImage";
 import ToppingPopup from "../component/cart/ToppingPopup";
 import "../css/CartPage.css";
-import { LuMinus, LuPlus } from "react-icons/lu";
+import { api } from "../services/api";
 
 export default function CartPage() {
   const {
@@ -36,10 +36,8 @@ export default function CartPage() {
   const loadToppings = async (menuId) => {
     if (toppingsMap[menuId]) return;
 
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/menu/${menuId}/toppings`
-    );
-    const data = await res.json();
+    const res = await api.get(`/menu/${menuId}/toppings`);
+    const data = res.data;
 
     setToppingsMap(prev => ({
       ...prev,
