@@ -14,18 +14,20 @@ export default function AppHeader({
   color = "#fff",
 }) {
   const LeftButton = () => {
-    if (leftLink)
-      return (
-        <Link to={leftLink} className="header-btn left-btn">
-          {leftIcon || <FiArrowLeft size={22} />}
-        </Link>
-      );
     if (onLeftClick)
       return (
         <button className="header-btn left-btn" onClick={onLeftClick}>
           {leftIcon || <FiArrowLeft size={22} />}
         </button>
       );
+
+    if (leftLink)
+      return (
+        <Link to={leftLink} className="header-btn left-btn">
+          {leftIcon || <FiArrowLeft size={22} />}
+        </Link>
+      );
+
     return null;
   };
 

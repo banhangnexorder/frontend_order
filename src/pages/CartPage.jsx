@@ -189,15 +189,3 @@ export default function CartPage() {
   );
 }
 
-export default function AppHeader({ title, leftIcon, leftLink, onLeftClick }) {
-  return (
-    <div className="header">
-      <button
-        onClick={onLeftClick || (() => window.location.href = leftLink)}
-      >
-        {leftIcon}
-      </button>
-      <h1>{title}</h1>
-    </div>
-  );
-}
