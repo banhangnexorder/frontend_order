@@ -90,7 +90,11 @@ export default function CartPage() {
 
   return (
     <div className="cart-page">
-      <AppHeader title="Giỏ hàng" leftIcon={<FiArrowLeft />} leftLink="/" />
+      <AppHeader
+        title="Giỏ hàng"
+        leftIcon={<FiArrowLeft />}
+        onLeftClick={() => navigate(-1)}
+      />
 
       <main className="cart-content">
         {cart.length === 0 ? (
@@ -181,6 +185,19 @@ export default function CartPage() {
           onClose={() => setSelectingItemId(null)}
         />
       )}
+    </div>
+  );
+}
+
+export default function AppHeader({ title, leftIcon, leftLink, onLeftClick }) {
+  return (
+    <div className="header">
+      <button
+        onClick={onLeftClick || (() => window.location.href = leftLink)}
+      >
+        {leftIcon}
+      </button>
+      <h1>{title}</h1>
     </div>
   );
 }
