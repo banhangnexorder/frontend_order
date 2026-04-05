@@ -28,6 +28,7 @@ import { MenuProvider } from "./context/MenuContext";
 
 /* ===== STAFF ===== */
 import KitchenRealtimeOrders from "./staff/KitchenRealtimeOrders";
+import RegisterStore from "./pages/RegisterStore";
 
 export default function App() {
   return (
@@ -49,6 +50,9 @@ export default function App() {
 
           <Route path="/cart" element={<CartPage />} />
           <Route path="/success" element={<SuccessPage />} />
+
+
+          <Route path="/register" element={<RegisterStore />} />
 
           {/* ===== ADMIN LOGIN ===== */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -141,10 +145,9 @@ export default function App() {
           {/* ===== FALLBACK ===== */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
-        </Routes>
-</MenuProvider>
+          </Routes>
+        </MenuProvider>
       </CartProvider>
-
     </BrowserRouter>
   );
 }
