@@ -138,7 +138,7 @@ export default function AdminOrders() {
                 <div key={order.id} className="order-card">
                   <div className="order-header">
                     <div>
-                      <span className="order-id">#{order.id}</span>
+                      <span className="order-id">#{order.order_date.replace(/-/g, "").slice(2)}-{String(order.order_no).padStart(3, "0")}</span>
                       <span className="order-table"> • Bàn {order.table_id}</span>
                     </div>
                     <span className={`status-badge ${order.status}`}>
