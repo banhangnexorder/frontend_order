@@ -23,7 +23,7 @@ export default function SuccessPage() {
           <div className="order-info">
             <p><span className="label">🧾 Mã đơn:</span> <strong>{order.id || "—"}</strong></p>
             <p><span className="label">🪑 Bàn:</span> <strong>{order.table_id || "—"}</strong></p>
-            <p><span className="label">🏠 Chi nhánh:</span> <strong>{order.store_id || "—"}</strong></p>
+            {/* <p><span className="label">🏠 Chi nhánh:</span> <strong>{order.store_id || "—"}</strong></p> */}
             <p><span className="label">🕓 Thời gian:</span> {order.time || new Date().toLocaleString("vi-VN")}</p>
           </div>
 

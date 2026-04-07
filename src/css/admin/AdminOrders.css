@@ -34,7 +34,7 @@
   padding: 16px;
   margin-bottom: 24px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 16px;
 }
 

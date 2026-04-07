@@ -73,12 +73,12 @@ export default function MenuPage() {
 
   return (
     <div className="app">
-      <AppHeader title="☕ Cà phê Mộc" />
+      <AppHeader title="☕ Cà phê Mộc" /> {/* sửa */}
 
       {/* Table Info - Sticky top nếu cần */}
       {tableInfo?.table && (
         <div className="table-info">
-          <span>🏠 Chi nhánh: {tableInfo.store || "Không xác định"}</span>
+          {/* <span>🏠 Chi nhánh: {tableInfo.store || "Không xác định"}</span> */}
           <span>🪑 Bàn {tableInfo.table}</span>
         </div>
       )}
