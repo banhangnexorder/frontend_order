@@ -54,6 +54,21 @@ export default function AdminOrders() {
     selectToday();
   }, []);
 
+  function formatOrderCode(order) {
+    if (!order.order_no) return `#${order.id}`;
+
+    const date = order.order_date
+      ? new Date(order.order_date)
+      : new Date(order.created_at);
+
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+
+    const no = String(order.order_no).padStart(3, "0");
+
+    return `#${dd}${mm}-${no}`;
+  }
+
   return (
     <div className="admin-layout">
       <AdminHeader />
@@ -138,7 +153,7 @@ export default function AdminOrders() {
                 <div key={order.id} className="order-card">
                   <div className="order-header">
                     <div>
-                      <span className="order-id">#{order.order_date.replace(/-/g, "").slice(2)}-{String(order.order_no).padStart(3, "0")}</span>
+                      <span className="order-id">{formatOrderCode(order)}</span>
                       <span className="order-table"> • Bàn {order.table_id}</span>
                     </div>
                     <span className={`status-badge ${order.status}`}>
