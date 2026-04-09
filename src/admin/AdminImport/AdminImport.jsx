@@ -30,6 +30,8 @@ export default function AdminImport() {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
+      console.log("IMPORT menu-management:", res.data);
+
       setResult(res.data);
     } catch (err) {
       setError({
