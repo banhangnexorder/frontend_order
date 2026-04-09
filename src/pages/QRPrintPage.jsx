@@ -4,9 +4,13 @@ import "../css/qrpage.css";
 
 export default function QRPrintPage() {
   const [qrs, setQrs] = useState([]);
-  const store_id = 6;
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const store_id = user?.store_id;
 
   useEffect(() => {
+    if (!store_id) return;
+
     const load = async () => {
       const arr = [];
 
@@ -21,11 +25,12 @@ export default function QRPrintPage() {
           url: data.url
         });
       }
+
       setQrs(arr);
     };
 
     load();
-  }, []);
+  }, [store_id]);
 
   return (
     <div className="grid grid-cols-3 gap-4 p-4">
