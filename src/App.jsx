@@ -35,16 +35,16 @@ export default function App() {
     <BrowserRouter>
 
       <CartProvider>
-        <MenuProvider>
+        
         <Routes>
 
           {/* ===== CLIENT MENU (QR MENU) ===== */}
           <Route
             path="/menu"
             element={
-              
+              <MenuProvider>
                 <MenuPage />
-              
+              </MenuProvider>
             }
           />
 
@@ -146,7 +146,6 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
 
           </Routes>
-        </MenuProvider>
       </CartProvider>
     </BrowserRouter>
   );
