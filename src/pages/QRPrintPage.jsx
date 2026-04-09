@@ -9,8 +9,6 @@ export default function QRPrintPage() {
   const store_id = user?.store_id;
 
   useEffect(() => {
-    if (!store_id) return;
-
     const load = async () => {
       const arr = [];
 
@@ -33,13 +31,16 @@ export default function QRPrintPage() {
   }, [store_id]);
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
-      {/* {qrs.map(qr => ( */}
-        <div key={qr.table} className="border p-4 text-center">
-          <h3>Bàn {qr.table}</h3>
-          <QRCode value={qr.url} size={150} />
-        </div>
-      {/* ))} */}
+    <div className="admin-layout">
+          <AdminHeader />
+            <div className="grid grid-cols-3 gap-4 p-4">
+            {qrs.map(qr => (
+                <div key={qr.table} className="border p-4 text-center">
+                <h3>Bàn {qr.table}</h3>
+                <QRCode value={qr.url} size={150} />
+                </div>
+            ))}
+            </div>
     </div>
   );
 }
