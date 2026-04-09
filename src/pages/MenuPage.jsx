@@ -53,27 +53,50 @@ export default function MenuPage() {
 
   }, [searchParams]);
 
+  const groupedMenu = useMemo(() => {
+    if (!menu) return [];
+
+    const map = {};
+
+    menu.forEach(item => {
+      const catId = item.category_id;
+
+      if (!map[catId]) {
+        map[catId] = {
+          id: String(catId), // ⚠️ QUAN TRỌNG
+          category: item.category_name,
+          items: []
+        };
+      }
+
+      map[catId].items.push(item);
+    });
+
+    return Object.values(map);
+  }, [menu]);
+
   const filteredMenu = useMemo(() => {
-    if (!menu || menu.length === 0) return [];
+    if (!groupedMenu.length) return [];
 
     const key = normalizeText(keyword).toLowerCase();
-    console.log("MENU:", menu);
-    return menu
-      .filter((cat) => category === "all" || cat.id === category)
-      .map((cat) => ({
+
+    return groupedMenu
+      .filter(cat => category === "all" || cat.id === category)
+      .map(cat => ({
         ...cat,
-        items: cat.items.filter((item) =>
+        items: cat.items.filter(item =>
           normalizeText(item.name).toLowerCase().includes(key)
-        ),
+        )
       }))
-      .filter((cat) => cat.items.length > 0);
-  }, [menu, keyword, category]);
+      .filter(cat => cat.items.length > 0);
+
+  }, [groupedMenu, keyword, category]);
 
   const total = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
 
   return (
     <div className="app">
-      <AppHeader title="${tableInfo.store}" /> {/* sửa */}
+      <AppHeader title="Thực đơn" /> {/* sửa */}
 
       {/* Table Info - Sticky top nếu cần */}
       {tableInfo?.table && (
