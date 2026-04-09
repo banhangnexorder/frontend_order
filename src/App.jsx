@@ -77,6 +77,15 @@ export default function App() {
           />
 
           <Route
+            path="/admin/print-qr"
+            element={
+              <ProtectedRoute roles={["admin"]}>
+                <QRPrintPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="/admin/menu-management"
             element={
               <ProtectedRoute roles={["admin"]}>

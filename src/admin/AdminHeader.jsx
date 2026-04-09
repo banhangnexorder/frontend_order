@@ -30,6 +30,10 @@ export default function AdminHeader() {
         <NavLink to="/admin/menu-management">
           Upload Menu
         </NavLink>
+        
+        <NavLink to="/admin/print-qr">
+          Tạo QR Bàn
+        </NavLink>
       </nav>
 
       {/* RIGHT */}
