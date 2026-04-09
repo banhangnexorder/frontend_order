@@ -34,12 +34,12 @@ export default function QRPrintPage() {
 
   return (
     <div className="grid grid-cols-3 gap-4 p-4">
-      {qrs.map(qr => (
+      {/* {qrs.map(qr => ( */}
         <div key={qr.table} className="border p-4 text-center">
           <h3>Bàn {qr.table}</h3>
           <QRCode value={qr.url} size={150} />
         </div>
-      ))}
+      {/* ))} */}
     </div>
   );
 }
