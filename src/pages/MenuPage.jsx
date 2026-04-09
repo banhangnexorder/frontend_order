@@ -53,50 +53,27 @@ export default function MenuPage() {
 
   }, [searchParams]);
 
-  const groupedMenu = useMemo(() => {
-    if (!menu) return [];
-
-    const map = {};
-
-    menu.forEach(item => {
-      const catId = item.category_id;
-
-      if (!map[catId]) {
-        map[catId] = {
-          id: catId,
-          category: item.category_name,
-          items: []
-        };
-      }
-
-      map[catId].items.push(item);
-    });
-
-    return Object.values(map);
-  }, [menu]);
-
   const filteredMenu = useMemo(() => {
-    if (!groupedMenu.length) return [];
+    if (!menu || menu.length === 0) return [];
 
     const key = normalizeText(keyword).toLowerCase();
-
-    return groupedMenu
-      .filter(cat => category === "all" || String(cat.id) === category)
-      .map(cat => ({
+    console.log("MENU:", menu);
+    return menu
+      .filter((cat) => category === "all" || cat.id === category)
+      .map((cat) => ({
         ...cat,
-        items: cat.items.filter(item =>
+        items: cat.items.filter((item) =>
           normalizeText(item.name).toLowerCase().includes(key)
-        )
+        ),
       }))
-      .filter(cat => cat.items.length > 0);
-
-  }, [groupedMenu, keyword, category]);
+      .filter((cat) => cat.items.length > 0);
+  }, [menu, keyword, category]);
 
   const total = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
 
   return (
     <div className="app">
-      <AppHeader title="Thực đơn" /> {/* sửa */}
+      <AppHeader title="${tableInfo.store}" /> {/* sửa */}
 
       {/* Table Info - Sticky top nếu cần */}
       {tableInfo?.table && (
@@ -122,9 +99,10 @@ export default function MenuPage() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          className="mobile-select"
         >
           <option value="all">Tất cả</option>
-          {groupedMenu.map((c) => (
+          {menu.map((c) => (
             <option key={c.id} value={c.id}>
               {c.category}
             </option>
