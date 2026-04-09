@@ -21,7 +21,6 @@ export default function QRPrintPage() {
           url: data.url
         });
       }
-
       setQrs(arr);
     };
 
