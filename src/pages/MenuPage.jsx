@@ -81,7 +81,7 @@ export default function MenuPage() {
     const key = normalizeText(keyword).toLowerCase();
 
     return groupedMenu
-      .filter(cat => category === "all" || cat.id === category)
+      .filter(cat => category === "all" || String(cat.id) === category)
       .map(cat => ({
         ...cat,
         items: cat.items.filter(item =>
@@ -96,7 +96,7 @@ export default function MenuPage() {
 
   return (
     <div className="app">
-      <AppHeader title="${tableInfo.store}" /> {/* sửa */}
+      <AppHeader title="Thực đơn" /> {/* sửa */}
 
       {/* Table Info - Sticky top nếu cần */}
       {tableInfo?.table && (
@@ -121,7 +121,7 @@ export default function MenuPage() {
 
         <select
           value={category}
-          onChange={(e) => setCategory(Number(e.target.value))}
+          onChange={(e) => setCategory(e.target.value)}
         >
           <option value="all">Tất cả</option>
           {groupedMenu.map((c) => (

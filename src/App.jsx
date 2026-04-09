@@ -29,7 +29,7 @@ import { MenuProvider } from "./context/MenuContext";
 /* ===== STAFF ===== */
 import KitchenRealtimeOrders from "./staff/KitchenRealtimeOrders";
 import RegisterStore from "./pages/RegisterStore";
-import QRPrintPage from "./pages/QRPrintPage";
+import QRPrintPage from "./admin/QRPrintPage";
 
 export default function App() {
   return (

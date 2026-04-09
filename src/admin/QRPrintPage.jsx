@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import "../css/qrpage.css";
+import AdminHeader from "./AdminHeader";
 
 export default function QRPrintPage() {
   const [qrs, setQrs] = useState([]);
