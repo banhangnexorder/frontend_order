@@ -65,6 +65,7 @@ export default function MenuPage() {
         map[catId] = {
           id: String(catId), // ⚠️ QUAN TRỌNG
           category: item.category_name,
+          
           items: []
         };
       }
