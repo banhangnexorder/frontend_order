@@ -65,7 +65,7 @@ export default function MenuPage() {
         map[catId] = {
           id: String(catId), // ⚠️ QUAN TRỌNG
           category: item.category_name,
-          
+
           items: []
         };
       }
@@ -80,6 +80,8 @@ export default function MenuPage() {
     if (!groupedMenu.length) return [];
 
     const key = normalizeText(keyword).toLowerCase();
+    console.log("groupedMenu:", groupedMenu)
+    console.log("selected:", category)
 
     return groupedMenu
       .filter(cat => category === "all" || cat.id === category)
@@ -126,7 +128,7 @@ export default function MenuPage() {
           className="mobile-select"
         >
           <option value="all">Tất cả</option>
-          {menu.map((c) => (
+          {groupedMenu.map((c) => (   // ✅ dùng groupedMenu
             <option key={c.id} value={c.id}>
               {c.category}
             </option>
