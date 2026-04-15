@@ -53,38 +53,14 @@ export default function MenuPage() {
 
   }, [searchParams]);
 
-  const groupedMenu = useMemo(() => {
-    if (!menu) return [];
-
-    const map = {};
-
-    menu.forEach(item => {
-      const catId = item.category_id;
-
-      if (!map[catId]) {
-        map[catId] = {
-          id: String(catId), // ⚠️ QUAN TRỌNG
-          category: item.category_name,
-
-          items: []
-        };
-      }
-
-      map[catId].items.push(item);
-    });
-
-    return Object.values(map);
-  }, [menu]);
 
   const filteredMenu = useMemo(() => {
-    if (!groupedMenu.length) return [];
+    if (!menu || menu.length === 0) return [];
 
     const key = normalizeText(keyword).toLowerCase();
-    console.log("groupedMenu:", groupedMenu)
-    console.log("selected:", category)
 
-    return groupedMenu
-      .filter(cat => category === "all" || cat.id === category)
+    return menu
+      .filter(cat => category === "all" || String(cat.id) === category)
       .map(cat => ({
         ...cat,
         items: cat.items.filter(item =>
@@ -93,7 +69,7 @@ export default function MenuPage() {
       }))
       .filter(cat => cat.items.length > 0);
 
-  }, [groupedMenu, keyword, category]);
+  }, [menu, keyword, category]);
 
   const total = cart.reduce((sum, i) => sum + i.qty * i.price, 0);
 
@@ -125,11 +101,10 @@ export default function MenuPage() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="mobile-select"
         >
           <option value="all">Tất cả</option>
-          {groupedMenu.map((c) => (   // ✅ dùng groupedMenu
-            <option key={c.id} value={c.id}>
+          {menu.map((c) => (
+            <option key={c.id} value={String(c.id)}>
               {c.category}
             </option>
           ))}
