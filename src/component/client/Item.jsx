@@ -1,5 +1,6 @@
 import "../../css/client/Item.css";
 import React, { useState } from "react";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
   const [animate, setAnimate] = useState(false);
@@ -31,7 +32,7 @@ export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
       {/* nội dung */}
       <div className="item-info">
         <div className="item-name">{name}</div>
-        <div className="item-price">{price}đ</div>
+        <div className="item-price">{formatCurrency(Number(price) || 0)}đ</div>
       </div>
     </div>
   );
