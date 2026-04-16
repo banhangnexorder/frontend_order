@@ -1,7 +1,8 @@
 /* Mobile-first design */
 .app {
   min-height: 100vh;
-  background: #fdfaf5; /* kem nhạt, ấm áp */
+  background: #fdfaf5;
+  /* kem nhạt, ấm áp */
   color: #3d2b1f;
   display: flex;
   flex-direction: column;
@@ -20,7 +21,7 @@
   font-weight: 500;
   display: flex;
   justify-content: space-around;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   border-bottom: 1px solid #5c3a1a;
 }
 
@@ -33,50 +34,51 @@
   flex-direction: column;
   gap: 12px;
   position: sticky;
-  top: 44px; /* chiều cao table-info */
+  top: 44px;
+  /* chiều cao table-info */
   z-index: 90;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .search-icon {
   position: absolute;
   left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  font-size: 1.2rem;
   color: #9ca3af;
-  font-size: 1.3rem;
 }
 
 .mobile-input {
   width: 100%;
-  padding: 14px 14px 14px 44px;
-  border: 1px solid #d1d5db;
+  padding: 12px 14px 12px 40px;
+  height: 44px;
   border-radius: 12px;
-  font-size: 16px;
-  background: #f9fafb;
-  transition: border-color 0.2s;
+  font-size: 14px;
 }
 
 .mobile-input:focus {
   border-color: #8b5cf6;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 .mobile-select {
   width: 100%;
-  padding: 14px 16px;
+  padding: 0 14px 0 12px;
   border: 1px solid #d1d5db;
   border-radius: 12px;
-  font-size: 16px;
-  background: #f9fafb url("data:image/svg+xml,...") no-repeat right 12px center; /* arrow đẹp */
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  background: #f9fafb url("data:image/svg+xml,...") no-repeat right 12px center;
+  /* arrow đẹp */
 }
 
 /* Content */
 .content {
   flex: 1;
   padding: 16px;
-  padding-bottom: 90px; /* cho footer fixed */
+  padding-bottom: 90px;
+  /* cho footer fixed */
 }
 
 /* Loading / Empty / Error - Mobile centered */
@@ -101,7 +103,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error-mobile svg {
@@ -138,9 +142,10 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-  touch-action: manipulation; /* tốt cho touch */
+  touch-action: manipulation;
+  /* tốt cho touch */
 }
 
 .menu-item:active {
@@ -188,7 +193,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
-  box-shadow: 0 4px 10px rgba(16,185,129,0.3);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -200,36 +205,43 @@
 /* Menu Filter - 1 hàng duy nhất trên mobile */
 .menu-filter.single-row-filter {
   display: flex;
-  flex-direction: row;           /* luôn 1 hàng */
+  flex-direction: row;
+  /* luôn 1 hàng */
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
   background: white;
   border-bottom: 1px solid #e5e0d8;
   position: sticky;
-  top: 44px;                     /* dính dưới table-info */
+  top: 44px;
+  /* dính dưới table-info */
   z-index: 90;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Search input chiếm phần lớn */
 .search-wrapper {
-  flex: 1;                       /* chiếm hết chỗ còn lại */
+  flex: 1;
+  display: flex;
+  align-items: center;
   position: relative;
-  min-width: 0;                  /* tránh tràn */
 }
 
 .mobile-input:focus {
   border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
 }
 
 /* Select - thêm padding phải để chữ không dính mũi tên */
 .mobile-select {
-  flex: 0 0 auto;                /* không co giãn, giữ kích thước vừa đủ */
-  min-width: 140px;              /* chiều rộng tối thiểu */
-  max-width: 180px;              /* không quá rộng */
-  padding: 14px 36px 14px 16px;  /* padding phải lớn hơn để dành chỗ mũi tên */
+  flex: 0 0 auto;
+  /* không co giãn, giữ kích thước vừa đủ */
+  min-width: 140px;
+  /* chiều rộng tối thiểu */
+  max-width: 180px;
+  /* không quá rộng */
+  padding: 14px 36px 14px 16px;
+  /* padding phải lớn hơn để dành chỗ mũi tên */
   border: 1px solid #d1d5db;
   border-radius: 12px;
   font-size: 16px;
@@ -238,7 +250,8 @@
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 12px;
-  appearance: none;              /* bỏ mũi tên mặc định của browser */
+  appearance: none;
+  /* bỏ mũi tên mặc định của browser */
   -webkit-appearance: none;
 }
 
