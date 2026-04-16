@@ -36,8 +36,12 @@ export default function App() {
     <BrowserRouter>
 
       <CartProvider>
-        
+
         <Routes>
+
+
+          {/* ===== REGISTER Store cho khách hàng ===== */}
+          <Route path="/register" element={<RegisterStore />} />
 
           {/* ===== CLIENT MENU (QR MENU) ===== */}
           <Route
@@ -48,12 +52,10 @@ export default function App() {
               </MenuProvider>
             }
           />
-
+          {/* ===== CLIENT CART ===== */}
           <Route path="/cart" element={<CartPage />} />
+          {/* ===== Đặt hàng thành công ===== */}
           <Route path="/success" element={<SuccessPage />} />
-
-
-          <Route path="/register" element={<RegisterStore />} />
 
           {/* ===== ADMIN LOGIN ===== */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -68,6 +70,7 @@ export default function App() {
             }
           />
 
+          {/* ===== ADMIN ORDERS - Dành cho trang quản lý ===== */}
           <Route
             path="/admin/orders"
             element={
@@ -76,7 +79,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
+          {/* ===== ADMIN PRINT QR - IN QR bàn ===== */}
           <Route
             path="/admin/print-qr"
             element={
@@ -86,6 +89,7 @@ export default function App() {
             }
           />
 
+          {/* ===== ADMIN MENU MANAGEMENT - Dành cho trang quản lý ===== */}
           <Route
             path="/admin/menu-management"
             element={
@@ -95,6 +99,7 @@ export default function App() {
             }
           />
 
+          {/* ===== ADMIN UPLOAD MENU IMAGES - Dành cho trang quản lý ===== */}
           <Route
             path="/admin/upload-menu-images"
             element={
@@ -114,7 +119,7 @@ export default function App() {
             }
           />
 
-          {/* ===== STAFF ORDERS ===== */}
+          {/* ===== STAFF ORDERS - MÀN HÌNH DÀNH CHO BẾP TIẾP NHẬN ĐƠN ===== */}
           <Route
             path="/staff/order"
             element={
@@ -134,6 +139,7 @@ export default function App() {
             }
           />
 
+          {/* ===== KITCHEN FOOD - MÀN HÌNH DÀNH CHO BẾP MÓN ĂN ===== */}
           <Route
             path="/kitchenfood"
             element={
@@ -143,6 +149,7 @@ export default function App() {
             }
           />
 
+          {/* ===== KITCHEN BAR - MÀN HÌNH DÀNH CHO QUẦY BAR ===== */}
           <Route
             path="/kitchenbar"
             element={
@@ -152,10 +159,10 @@ export default function App() {
             }
           />
 
-          {/* ===== FALLBACK ===== */}
+          {/* ===== FALLBACK - MẶC ĐỊNH ===== */}
           <Route path="*" element={<Navigate to="/" replace />} />
 
-          </Routes>
+        </Routes>
       </CartProvider>
     </BrowserRouter>
   );
