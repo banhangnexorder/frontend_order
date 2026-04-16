@@ -1,9 +1,13 @@
 /* === CART PAGE === */
+.cart-page, .cart-page * {
+  box-sizing: border-box;
+}
+
 .cart-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   background: var(--coffee-bg);
   overflow-x: hidden;
 }
