@@ -39,11 +39,11 @@
 }
 
 .left-btn {
-  left: 0;
+  left: 0px;
 }
 
 .right-btn {
-  right: 0;
+  right: 0px;
 }
 
 .header-btn:hover {
