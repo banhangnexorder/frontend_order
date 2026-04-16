@@ -101,6 +101,7 @@ export default function MenuPage() {
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          className="mobile-select"
         >
           <option value="all">Tất cả</option>
           {menu.map((c) => (
