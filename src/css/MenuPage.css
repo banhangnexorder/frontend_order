@@ -226,6 +226,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  height: 44px;
 }
 
 .mobile-input:focus {
