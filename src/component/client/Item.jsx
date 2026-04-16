@@ -20,7 +20,11 @@ export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
           alt={name}
           className="item-img"
           onError={(e) => {
-            e.currentTarget.src = defaultImg;
+            const target = e.currentTarget;
+            // tránh loop nếu default cũng lỗi
+            if (target.src.includes("default_df.png")) return;
+
+            target.src = defaultImg;
           }}
         />
 
