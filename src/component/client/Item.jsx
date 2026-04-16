@@ -1,9 +1,9 @@
 import "../../css/client/Item.css";
 import React, { useState } from "react";
+import defaultImg from "../../assets/default_df.png";
 
 export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
   const [animate, setAnimate] = useState(false);
-  const defaultImg = "/assets/default_df.png";
 
   const handleClick = () => {
     setAnimate(true);
