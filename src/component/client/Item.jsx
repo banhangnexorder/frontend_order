@@ -15,7 +15,14 @@ export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
     <div className={`item-card ${selected ? "selected" : ""}`}>
       {/* khung ảnh */}
       <div className="item-img-wrapper">
-        <img src={img || defaultImg} alt={name} className="item-img" />
+        <img
+          src={img}
+          alt={name}
+          className="item-img"
+          onError={(e) => {
+            e.currentTarget.src = defaultImg;
+          }}
+        />
 
         {/* badge số lượng */}
         {qty > 0 && <div className="item-qty-badge">x{qty}</div>}
