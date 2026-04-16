@@ -1,15 +1,9 @@
-
-*, *::before, *::after{
-  box-sizing: border-box;
-}
-
-
 /* === CART PAGE === */
 .cart-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   background: var(--coffee-bg);
   overflow-x: hidden;
 }
@@ -141,14 +135,15 @@
   padding: 16px;
   border-top: 1px solid #eee;
   box-shadow: 0 -2px 6px var(--shadow);
-  
+
   /* Thêm để fixed bottom */
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 90;               /* Đảm bảo nằm trên nội dung khác nếu cần */
-  
+  z-index: 90;
+  /* Đảm bảo nằm trên nội dung khác nếu cần */
+
   /* Căn chỉnh nội dung bên trong */
   display: flex;
   align-items: center;
@@ -160,7 +155,8 @@
 .cart-content {
   flex: 1;
   padding: 16px;
-  padding-bottom: 100px;       /* ← Giá trị này phải lớn hơn hoặc bằng chiều cao footer */
+  padding-bottom: 100px;
+  /* ← Giá trị này phải lớn hơn hoặc bằng chiều cao footer */
   width: 100%;
 }
 
@@ -169,7 +165,7 @@
   .cart-footer {
     padding-bottom: calc(16px + env(safe-area-inset-bottom));
   }
-  
+
   .cart-content {
     padding-bottom: calc(100px + env(safe-area-inset-bottom));
   }
@@ -216,7 +212,7 @@
   width: 90%;
   max-width: 420px;
   padding: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 /* === TOPPING POPUP === */
@@ -300,9 +296,6 @@
 }
 
 .btn-qty {
-  /* position: absolute; */
-  top: 8px;
-  right: 8px;
   background: #4b2e16;
   color: #fff;
   border: none;
@@ -310,7 +303,8 @@
   height: 32px;
   border-radius: 16px;
   cursor: pointer;
-  font-size: 20px; /* 👈 size dấu cộng */
+  font-size: 20px;
+  /* 👈 size dấu cộng */
   font-weight: 600;
   line-height: 0;
   display: flex;
@@ -323,11 +317,12 @@
 .custom-textarea {
   margin-top: 4px;
   width: 100%;
-  min-height: 20px;
+  min-height: 70px;
   padding: 8px 10px;
   font-size: 15px;
   line-height: 1.5;
-  border: 1px solid #d1d5db;        /* gray-300 */
+  border: 1px solid #d1d5db;
+  /* gray-300 */
   border-radius: 8px;
   background-color: #ffffff;
   resize: vertical;
@@ -338,14 +333,17 @@
 
 /* Khi focus */
 .custom-textarea:focus {
-  border-color: #3b82f6;            /* blue-500 */
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* blue-500 với opacity */
+  border-color: #3b82f6;
+  /* blue-500 */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  /* blue-500 với opacity */
   outline: none;
 }
 
 /* Placeholder */
 .custom-textarea::placeholder {
-  color: #9ca3af;                   /* gray-400 */
+  color: #9ca3af;
+  /* gray-400 */
   opacity: 1;
 }
 
