@@ -207,7 +207,6 @@
 .menu-filter.single-row-filter {
   display: flex;
   flex-direction: row;
-  /* luôn 1 hàng */
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
@@ -215,7 +214,6 @@
   border-bottom: 1px solid #e5e0d8;
   position: sticky;
   top: 44px;
-  /* dính dưới table-info */
   z-index: 90;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
@@ -242,11 +240,12 @@
   /* chiều rộng tối thiểu */
   max-width: 180px;
   /* không quá rộng */
-  padding: 14px 36px 14px 16px;
+  padding: 0 36px 0 16px;
   /* padding phải lớn hơn để dành chỗ mũi tên */
   border: 1px solid #d1d5db;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 14px;
+  height: 44px;
   background: #f9fafb;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8.825L1.175 4 2 3.175l4 4 4-4L11 4z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
