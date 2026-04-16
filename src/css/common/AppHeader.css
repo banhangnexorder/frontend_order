@@ -9,10 +9,9 @@
 }
 
 .header-inner {
-  position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
   align-items: center;
-  justify-content: center;
   width: 100%;
 }
 
@@ -22,12 +21,10 @@
   letter-spacing: 0.3px;
   text-align: center;
   margin: 0;
+  grid-column: 2;
 }
 
 .header-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: transparent;
   border: none;
   color: inherit;
@@ -36,14 +33,18 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  width: 40px;
+  height: 40px;
 }
 
 .left-btn {
-  left: 0px;
+  grid-column: 1;
+  justify-content: flex-start;
 }
 
 .right-btn {
-  right: 0px;
+  grid-column: 3;
+  justify-content: flex-end;
 }
 
 .header-btn:hover {
