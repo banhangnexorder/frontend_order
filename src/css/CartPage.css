@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   background: var(--coffee-bg);
   overflow-x: hidden;
 }
@@ -296,6 +296,9 @@
 }
 
 .btn-qty {
+  /* position: absolute; */
+  top: 8px;
+  right: 8px;
   background: #4b2e16;
   color: #fff;
   border: none;
@@ -317,7 +320,7 @@
 .custom-textarea {
   margin-top: 4px;
   width: 100%;
-  min-height: 70px;
+  min-height: 20px;
   padding: 8px 10px;
   font-size: 15px;
   line-height: 1.5;
