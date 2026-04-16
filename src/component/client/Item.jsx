@@ -16,14 +16,19 @@ export default function Item({ img, name, price, onAdd, selected, qty = 0 }) {
       {/* khung ảnh */}
       <div className="item-img-wrapper">
         <img
-          src={img}
+          src={img || defaultImg}
           alt={name}
           className="item-img"
           onError={(e) => {
             const target = e.currentTarget;
-            // tránh loop nếu default cũng lỗi
+
+            // nếu đã là ảnh default thì dừng, không xử lý nữa
             if (target.src.includes("default_df.png")) return;
 
+            // gỡ onError để tránh loop
+            target.onerror = null;
+
+            // fallback về ảnh mặc định
             target.src = defaultImg;
           }}
         />
