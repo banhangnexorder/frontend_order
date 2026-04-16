@@ -70,7 +70,8 @@
   align-items: center;
   font-size: 14px;
   background: #f9fafb url("data:image/svg+xml,...") no-repeat right 12px center;
-  color: red
+  color: black;
+  height: 44px;
 }
 
 /* Content */
