@@ -1,45 +1,84 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../css/staff/KitchenRealtimeOrders.css";
 import { useKitchenOrders } from "../hooks/useKitchenOrders";
 
-// Hàm phát tiếng chuông Ting Ting nhẹ nhàng (2 nhịp) sử dụng biến đổi sóng âm thanh trực tiếp
+// Sử dụng context toàn cục để tránh bị Policy chặn khi tạo mới
+let globalAudioCtx = null;
+
+// Khởi tạo AudioContext
+const initAudioContext = () => {
+  if (!globalAudioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) {
+      globalAudioCtx = new AudioContext();
+    }
+  }
+};
+
 const playBellSound = () => {
   try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
+    initAudioContext();
+    if (!globalAudioCtx) return;
 
-    const osc1 = ctx.createOscillator();
-    const gain1 = ctx.createGain();
+    // Yêu cầu resume nếu chưa tương tác (trình duyệt có thể ném cảnh báo ở đây nếu hoàn toàn chưa có user gesture)
+    if (globalAudioCtx.state === "suspended") {
+      globalAudioCtx.resume();
+    }
+
+    // Nếu vẫn bị chặn thì bỏ qua (cần chờ user click)
+    if (globalAudioCtx.state === "suspended") {
+      console.warn("Cần tương tác màn hình để bật chuông.");
+      return;
+    }
+
+    const t = globalAudioCtx.currentTime;
+
+    const osc1 = globalAudioCtx.createOscillator();
+    const gain1 = globalAudioCtx.createGain();
     osc1.connect(gain1);
-    gain1.connect(ctx.destination);
+    gain1.connect(globalAudioCtx.destination);
     osc1.type = "sine";
-    osc1.frequency.setValueAtTime(659.25, ctx.currentTime); // E5
-    gain1.gain.setValueAtTime(0, ctx.currentTime);
-    gain1.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.05);
-    gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
-    osc1.start(ctx.currentTime);
-    osc1.stop(ctx.currentTime + 0.5);
+    osc1.frequency.setValueAtTime(659.25, t);
+    gain1.gain.setValueAtTime(0, t);
+    gain1.gain.linearRampToValueAtTime(0.5, t + 0.05);
+    gain1.gain.exponentialRampToValueAtTime(0.01, t + 0.4);
+    osc1.start(t);
+    osc1.stop(t + 0.5);
 
-    const osc2 = ctx.createOscillator();
-    const gain2 = ctx.createGain();
+    const osc2 = globalAudioCtx.createOscillator();
+    const gain2 = globalAudioCtx.createGain();
     osc2.connect(gain2);
-    gain2.connect(ctx.destination);
+    gain2.connect(globalAudioCtx.destination);
     osc2.type = "sine";
-    osc2.frequency.setValueAtTime(880, ctx.currentTime + 0.1); // A5
-    gain2.gain.setValueAtTime(0, ctx.currentTime + 0.1);
-    gain2.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.15);
-    gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.6);
-    osc2.start(ctx.currentTime + 0.1);
-    osc2.stop(ctx.currentTime + 0.7);
+    osc2.frequency.setValueAtTime(880, t + 0.1);
+    gain2.gain.setValueAtTime(0, t + 0.1);
+    gain2.gain.linearRampToValueAtTime(0.5, t + 0.15);
+    gain2.gain.exponentialRampToValueAtTime(0.01, t + 0.6);
+    osc2.start(t + 0.1);
+    osc2.stop(t + 0.7);
   } catch (err) {
-    console.log("Không thể phát âm thanh", err);
+    console.error("Lỗi âm thanh:", err);
   }
 };
 
 export default function KitchenRealtimeOrders() {
   const { orders, updateStatus } = useKitchenOrders();
   const prevOrderIdsRef = useRef(new Set());
+  const [soundEnabled, setSoundEnabled] = useState(false);
+
+  // Hàm do con người tự tay click để mở khoá âm thanh
+  const enableSound = () => {
+    initAudioContext();
+    if (globalAudioCtx && globalAudioCtx.state === "suspended") {
+      globalAudioCtx.resume().then(() => {
+        setSoundEnabled(true);
+        playBellSound(); // Phát thử 1 tiếng
+      });
+    } else {
+      setSoundEnabled(true);
+      playBellSound(); 
+    }
+  };
 
   useEffect(() => {
     if (!orders || orders.length === 0) return;
@@ -69,7 +108,31 @@ export default function KitchenRealtimeOrders() {
 
   return (
     <div className="kitchen-page">
-      <h1>🍳 Màn hình nhận đơn</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
+        <h1 style={{ margin: 0 }}>🍳 Màn hình nhận đơn</h1>
+        
+        {!soundEnabled ? (
+          <button 
+            onClick={enableSound}
+            style={{ 
+              background: '#ef4444', 
+              color: 'white', 
+              padding: '10px 16px', 
+              borderRadius: '8px', 
+              border: 'none', 
+              fontWeight: 'bold', 
+              cursor: 'pointer',
+              boxShadow: '0 4px 6px -1px rgba(239, 68, 68, 0.4)'
+            }}
+          >
+            🔔 Bật chuông thông báo
+          </button>
+        ) : (
+          <div style={{ color: '#10b981', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>🔔</span> Chuông báo đang bật
+          </div>
+        )}
+      </div>
 
       {orders.length === 0 && (
         <div className="empty">Chưa có đơn mới</div>
