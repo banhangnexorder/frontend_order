@@ -2,17 +2,35 @@ import { useState } from "react";
 import QRCode from "react-qr-code";
 import "../css/qrpage.css";
 import AdminHeader from "./AdminHeader";
+import { jwtDecode } from "jwt-decode";
 
 export default function QRPrintPage() {
   const [qrs, setQrs] = useState([]);
   const [tableCount, setTableCount] = useState(10);
   const [loading, setLoading] = useState(false);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  const store_id = user?.store_id;
+
+  // Giải mã token thay vì bắt "user" rỗng từ localStorage cũ
+  let store_id = null;
+  try {
+    const token = localStorage.getItem("admin_token");
+    if (token) {
+      const user = jwtDecode(token);
+      store_id = user?.store_id;
+    }
+  } catch (err) {
+    console.error("Lỗi giải mã token", err);
+  }
 
   const generateQRs = async () => {
-    if (!store_id || !tableCount || tableCount <= 0) return;
+    if (!tableCount || tableCount <= 0) {
+      alert("Chưa nhập số bàn");
+      return;
+    }
+    if (!store_id) {
+      alert("Không tìm thấy thông tin cửa hàng (Store ID). Vui lòng đăng nhập lại!");
+      return;
+    }
 
     setLoading(true);
     try {
