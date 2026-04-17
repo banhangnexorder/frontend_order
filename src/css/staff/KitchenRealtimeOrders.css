@@ -4,6 +4,7 @@
 ================================= */
 
 .kitchen-page {
+  box-sizing: border-box;
   padding: 24px;
   background: var(--coffee-bg);
   min-height: 100vh;
