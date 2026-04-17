@@ -3,6 +3,7 @@ import QRCode from "react-qr-code";
 import "../css/qrpage.css";
 import AdminHeader from "./AdminHeader";
 import { jwtDecode } from "jwt-decode";
+import { api } from "../services/api";
 
 export default function QRPrintPage() {
   const [qrs, setQrs] = useState([]);
@@ -35,12 +36,11 @@ export default function QRPrintPage() {
     setLoading(true);
     try {
       const promises = [];
-      // Sử dụng Promise.all để fetch song song thay vì tuần tự (sẽ nhanh hơn rất nhiều)
+      // Sử dụng api.get thay cho fetch để gọi đúng baseURL của backend, tránh lỗi Vite trả về file index.html (gây lỗi JSON '<!doctype')
       for (let i = 1; i <= tableCount; i++) {
         promises.push(
-          fetch(`/api/qr/generate?store_id=${store_id}&table_id=${i}`)
-            .then(res => res.json())
-            .then(data => ({ table: i, url: data.url }))
+          api.get(`/qr/generate?store_id=${store_id}&table_id=${i}`)
+            .then(res => ({ table: i, url: res.data.url }))
         );
       }
 
