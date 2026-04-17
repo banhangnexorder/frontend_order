@@ -35,16 +35,19 @@ export default function QRPrintPage() {
 
     setLoading(true);
     try {
-      const promises = [];
-      // Sử dụng api.get thay cho fetch để gọi đúng baseURL của backend, tránh lỗi Vite trả về file index.html (gây lỗi JSON '<!doctype')
+      const results = [];
+      // Đã đổi lại thành fetch tuần tự (một cái một) thay vì fetch song song (Promise.all)
+      // Vì fetch 10-20 bàn cùng lúc có thể làm backend miễn phí bị nghẽn (rate limit) hoặc sập, gây ra lỗi.
       for (let i = 1; i <= tableCount; i++) {
-        promises.push(
-          api.get(`/qr/generate?store_id=${store_id}&table_id=${i}`)
-            .then(res => ({ table: i, url: res.data.url }))
-        );
+        try {
+          const res = await api.get(`/qr/generate?store_id=${store_id}&table_id=${i}`);
+          results.push({ table: i, url: res.data.url });
+        } catch (requestErr) {
+          console.error(`Bàn ${i} lỗi:`, requestErr);
+          // Tiếp tục tạo bàn khác, không để chết cả đống
+        }
       }
-
-      const results = await Promise.all(promises);
+      
       setQrs(results);
     } catch (err) {
       console.error("Error generating QRs", err);
