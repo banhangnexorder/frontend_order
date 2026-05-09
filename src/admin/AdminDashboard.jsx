@@ -4,6 +4,7 @@ import "../css/admin/AdminDashboard.css";
 import "../css/common/buttons.css";
 import AdminHeader from "./AdminHeader";
 import OrdersChart from "../component/admin/OrdersChart";
+import { formatCurrency } from "../utils/formatCurrency";
 
 
 export default function AdminDashboard() {
@@ -54,7 +55,7 @@ export default function AdminDashboard() {
         <StatBox label="Đã huỷ" value={stats.cancelledOrders} color="cancelled" />
         <StatBox
           label="Doanh thu"
-          value={stats.revenue.toLocaleString() + "đ"}
+          value={formatCurrency(stats.revenue)}
           color="revenue"
         />
       </div>

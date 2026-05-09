@@ -1,5 +1,6 @@
 // src/component/cart/ToppingPopup.jsx
 import "../../css/ToppingPopup.css";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function ToppingPopup({ item, toppings, onClose, onChangeQty }) {
   if (!item) return null;
@@ -18,7 +19,7 @@ export default function ToppingPopup({ item, toppings, onClose, onChangeQty }) {
               <div key={t.id} className="topping-row">
                 <div className="topping-info">
                   <b>{t.name}</b>
-                  <span>+{t.price.toLocaleString()}đ</span>
+                  <span>+{formatCurrency(t.price)}</span>
                 </div>
 
                 {t.max_quantity === 1 ? (

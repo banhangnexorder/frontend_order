@@ -1,4 +1,5 @@
 import { api } from "../../services/api";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function StaffCart({ cart, setCart }) {
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
@@ -22,12 +23,12 @@ export default function StaffCart({ cart, setCart }) {
       {cart.map(i => (
         <div key={i.id} className="cart-row">
           <span>{i.name} × {i.qty}</span>
-          <span>{(i.price * i.qty).toLocaleString()}đ</span>
+          <span>{formatCurrency(i.price * i.qty)}</span>
         </div>
       ))}
 
       <div className="cart-total">
-        <b>{total.toLocaleString()}đ</b>
+        <b>{formatCurrency(total)}</b>
       </div>
 
       <button onClick={submitOrder} disabled={!cart.length}>

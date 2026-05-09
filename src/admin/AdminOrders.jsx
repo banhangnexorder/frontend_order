@@ -3,6 +3,7 @@ import { api } from "../services/api";
 import "../css/admin/AdminOrders.css";
 import { todayStr } from "../utils/todayStr.jsx";
 import AdminHeader from "./AdminHeader";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const statusMap = {
   pending: "⏳ Đang làm",
@@ -173,7 +174,7 @@ export default function AdminOrders() {
 
                   <div className="order-footer">
                     <div className="order-total">
-                      {Number(order.total).toLocaleString("vi-VN")} ₫
+                      {formatCurrency(Number(order.total))}
                     </div>
                   </div>
                 </div>

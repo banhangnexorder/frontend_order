@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "../../services/api";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function OrderTab() {
   const [items, setItems] = useState([]);
@@ -54,7 +55,7 @@ export default function OrderTab() {
       <ul className="item-list">
         {items.map((i, idx) => (
           <li key={idx}>
-            {i.name} - {i.price.toLocaleString()}đ
+            {i.name} - {formatCurrency(i.price)}
           </li>
         ))}
       </ul>
@@ -70,7 +71,7 @@ export default function OrderTab() {
       <h3 className="section-subtitle">📜 Lịch sử đơn</h3>
       {orders.map((o) => (
         <div key={o.id} className="order-history">
-          <p>Đơn #{o.id} - {o.total.toLocaleString()}đ</p>
+          <p>Đơn #{o.id} - {formatCurrency(o.total)}</p>
         </div>
       ))}
     </div>

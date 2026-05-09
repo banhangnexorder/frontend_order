@@ -8,6 +8,7 @@ import { getMenuImage } from "../utils/menuImage";
 import ToppingPopup from "../component/cart/ToppingPopup";
 import "../css/CartPage.css";
 import { api } from "../services/api";
+import { formatCurrency } from "../utils/formatCurrency";
 
 export default function CartPage() {
   const {
@@ -110,7 +111,7 @@ export default function CartPage() {
 
               <div className="cart-info">
                 <b>{item.name}</b>
-                <p>{item.price.toLocaleString()}đ</p>
+                <p>{formatCurrency(item.price)}</p>
 
                 {/* ===== TOPPING BUTTON ===== */}
                 {item.has_toppings && (
@@ -164,7 +165,7 @@ export default function CartPage() {
       <footer className="cart-footer fixed-footer">
         <div className="footer-total">
           <span>Tổng cộng:</span>
-          <b>{total.toLocaleString()}đ</b>
+          <b>{formatCurrency(total)}</b>
         </div>
         
         <button 

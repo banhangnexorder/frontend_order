@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { api } from "../../services/api";
 import { io } from "socket.io-client";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export const socket = io(import.meta.env.VITE_SOCKET_URL, {
   transports: ["websocket"],
@@ -209,7 +210,7 @@ export default function KitchenTab({ area = "all" }) {
             {/* ===== FOOTER ===== */}
             <div className="order-footer">
               <span className="total">
-                Tổng: {Number(order.total).toLocaleString()}đ
+                Tổng: {formatCurrency(Number(order.total))}
               </span>
 
               {order.status === "pending" && !isAreaDone(order) && (

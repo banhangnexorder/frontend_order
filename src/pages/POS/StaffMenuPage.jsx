@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../../css/StaffMenuPage.css";
 import { api } from "../../services/api";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function StaffMenuPage({ onAdd }) {
   const [menu, setMenu] = useState([]);
@@ -35,7 +36,7 @@ export default function StaffMenuPage({ onAdd }) {
                 <div className="info">
                   <h4>{item.name}</h4>
                   <p className="price">
-                    {item.price.toLocaleString()}đ
+                    {formatCurrency(item.price)}
                   </p>
                 </div>
               </div>
