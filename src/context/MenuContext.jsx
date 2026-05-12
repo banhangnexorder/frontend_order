@@ -83,6 +83,9 @@ function groupMenuByCategory(items) {
       id: item.id,
       name: item.name,
       price: item.price,
+      price_s: item.price_s,
+      price_m: item.price_m,
+      price_l: item.price_l,
       area: item.area,
       image: item.image_url, // dùng luôn url backend
       has_toppings: item.has_toppings
