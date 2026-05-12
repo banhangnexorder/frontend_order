@@ -9,16 +9,18 @@ export function CartProvider({ children }) {
   /* ===== ADD ITEM ===== */
   const addItem = (item) => {
     setCart(prev => {
-      const exist = prev.find(i => i.id === item.id);
+      const cartItemId = item.size ? `${item.id}_${item.size}` : item.id;
+      const exist = prev.find(i => i.cartItemId === cartItemId);
       if (exist) {
         return prev.map(i =>
-          i.id === item.id ? { ...i, qty: i.qty + 1 } : i
+          i.cartItemId === cartItemId ? { ...i, qty: i.qty + 1 } : i
         );
       }
       return [
         ...prev,
         {
           ...item,
+          cartItemId,
           qty: 1,
           note: "",
           toppings: []
@@ -28,31 +30,31 @@ export function CartProvider({ children }) {
   };
 
   /* ===== REMOVE ITEM ===== */
-  const removeItem = (id) => {
+  const removeItem = (cartItemId) => {
     setCart(prev =>
       prev
         .map(i =>
-          i.id === id ? { ...i, qty: i.qty - 1 } : i
+          i.cartItemId === cartItemId ? { ...i, qty: i.qty - 1 } : i
         )
         .filter(i => i.qty > 0)
     );
   };
 
-  const deleteItem = (id) => {
-    setCart(prev => prev.filter(i => i.id !== id));
+  const deleteItem = (cartItemId) => {
+    setCart(prev => prev.filter(i => i.cartItemId !== cartItemId));
   };
 
-  const updateNote = (id, note) => {
+  const updateNote = (cartItemId, note) => {
     setCart(prev =>
-      prev.map(i => (i.id === id ? { ...i, note } : i))
+      prev.map(i => (i.cartItemId === cartItemId ? { ...i, note } : i))
     );
   };
 
   /* ===== TOPPING QTY (KHÔNG NHẢY SỐ) ===== */
-  const updateToppingQty = (itemId, topping, delta) => {
+  const updateToppingQty = (cartItemId, topping, delta) => {
     setCart(prev =>
       prev.map(item => {
-        if (item.id !== itemId) return item;
+        if (item.cartItemId !== cartItemId) return item;
 
         const exist = item.toppings.find(t => t.id === topping.id);
         let newToppings;

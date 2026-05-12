@@ -1,12 +1,26 @@
 import "../../css/client/Category.css";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Item from "./Item";
 import { CartContext } from "../../context/CartContext";
 import { getMenuImage } from "../../utils/menuImage";
-
+import SizePopup from "./SizePopup";
 
 export default function Category({ title, items, onAdd }) {
   const { cart } = useContext(CartContext);
+  const [selectingSizeItem, setSelectingSizeItem] = useState(null);
+
+  const handleAddClick = (item) => {
+    if (item.price_s > 0 || item.price_m > 0 || item.price_l > 0) {
+      setSelectingSizeItem(item);
+    } else {
+      onAdd(item);
+    }
+  };
+
+  const handleSizeConfirm = (itemWithSize) => {
+    onAdd(itemWithSize);
+    setSelectingSizeItem(null);
+  };
 
   return (
     <section className="category">
@@ -14,7 +28,6 @@ export default function Category({ title, items, onAdd }) {
 
       <div className="grid">
         {items.map((item) => {
-          console.log("ITEMMMMMMM: ", item);
           const normalizedItem = {
             ...item,
             image: item.image || item.image_url,
@@ -23,10 +36,12 @@ export default function Category({ title, items, onAdd }) {
             name: item.name || "",
             qty: item.qty || 0,
             selected: item.selected || false,
-            onAdd: item.onAdd || (() => { }),
           };
 
-          const cartItem = cart.find((c) => c.id === normalizedItem.id);
+          // Tổng số lượng của item này trong giỏ hàng (bất kể size nào)
+          const totalQtyInCart = cart
+            .filter((c) => c.id === normalizedItem.id)
+            .reduce((sum, c) => sum + c.qty, 0);
 
           return (
             <Item
@@ -34,13 +49,21 @@ export default function Category({ title, items, onAdd }) {
               img={getMenuImage(normalizedItem.image)}
               name={normalizedItem.name}
               price={normalizedItem.price}
-              selected={!!cartItem}
-              qty={cartItem?.qty || 0}
-              onAdd={() => onAdd(normalizedItem)}
+              selected={totalQtyInCart > 0}
+              qty={totalQtyInCart}
+              onAdd={() => handleAddClick(normalizedItem)}
             />
           );
         })}
       </div>
+
+      {selectingSizeItem && (
+        <SizePopup
+          item={selectingSizeItem}
+          onClose={() => setSelectingSizeItem(null)}
+          onConfirm={handleSizeConfirm}
+        />
+      )}
     </section>
   );
 }

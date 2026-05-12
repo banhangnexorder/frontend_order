@@ -25,7 +25,7 @@ export default function CartPage() {
 
   const [tableInfo, setTableInfo] = useState({});
   const [toppingsMap, setToppingsMap] = useState({});
-  const [selectingItemId, setSelectingItemId] = useState(null);
+  const [selectingCartItemId, setSelectingCartItemId] = useState(null);
 
   /* ===== LOAD TABLE ===== */
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function CartPage() {
   };
 
   /* ===== GET CURRENT ITEM (SOURCE OF TRUTH) ===== */
-  const selectingItem = cart.find(i => i.id === selectingItemId);
+  const selectingItem = cart.find(i => i.cartItemId === selectingCartItemId);
 
   /* ===== TOTAL ===== */
   const total = cart.reduce((sum, item) => {
@@ -102,7 +102,7 @@ export default function CartPage() {
           <p className="empty">Giỏ hàng trống 😅</p>
         ) : (
           cart.map(item => (
-            <div key={item.id} className="cart-item">
+            <div key={item.cartItemId} className="cart-item">
               <img
                 src={getMenuImage(item.image)}
                 alt={item.name}
@@ -110,7 +110,7 @@ export default function CartPage() {
               />
 
               <div className="cart-info">
-                <b>{item.name}</b>
+                <b>{item.name} {item.size && `(Size ${item.size})`}</b>
                 <p>{formatCurrency(item.price)}</p>
 
                 {/* ===== TOPPING BUTTON ===== */}
@@ -118,7 +118,7 @@ export default function CartPage() {
                   <button
                     className="btn-topping"
                     onClick={() => {
-                      setSelectingItemId(item.id);
+                      setSelectingCartItemId(item.cartItemId);
                       loadToppings(item.id);
                     }}
                   >
@@ -138,14 +138,14 @@ export default function CartPage() {
                   placeholder="Ghi chú..."
                   value={item.note || ""}
                   onChange={e =>
-                    updateNote(item.id, e.target.value)
+                    updateNote(item.cartItemId, e.target.value)
                   }
                 />
 
                 <div className="cart-actions">
                   <button 
                   className="btn-qty"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(item.cartItemId)}
                   >
                     -
                   </button>
@@ -182,8 +182,8 @@ export default function CartPage() {
         <ToppingPopup
           item={selectingItem}
           toppings={toppingsMap[selectingItem.id]}
-          onChangeQty={updateToppingQty}
-          onClose={() => setSelectingItemId(null)}
+          onChangeQty={(id, t, delta) => updateToppingQty(selectingItem.cartItemId, t, delta)}
+          onClose={() => setSelectingCartItemId(null)}
         />
       )}
     </div>

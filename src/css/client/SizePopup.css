@@ -1,0 +1,94 @@
+.size-popup-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.size-popup-content {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: slideUp 0.3s ease;
+}
+
+.size-popup-content h3 {
+  margin-top: 0;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.size-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.size-option {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-option.selected {
+  border-color: #ff6b6b;
+  background-color: #fff0f0;
+}
+
+.size-option input {
+  margin-right: 15px;
+  accent-color: #ff6b6b;
+}
+
+.size-label {
+  flex: 1;
+  font-weight: 500;
+}
+
+.size-price {
+  font-weight: 600;
+  color: #ff6b6b;
+}
+
+.size-popup-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 12px;
+  background: #f1f1f1;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-confirm-size {
+  flex: 1;
+  padding: 12px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
